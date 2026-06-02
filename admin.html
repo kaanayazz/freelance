@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NOVA | Mega Admin Panel</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#f4f5f8;--card:#fff;--black:#080808;--dark:#111;--line:#e8e8e8;--muted:#666;
+  --gold:#d4af37;--soft:#ffe27a;--red:#d62828;--green:#178c4f;--blue:#0b5cff;
+  --cyan:#00a3ff;--orange:#f59e0b;--purple:#7c3aed;--pink:#ec4899
+}
+html,body{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}
+body{background:var(--bg);color:#111;user-select:none}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer;border:0}
+input,select,textarea{width:100%;border:1px solid rgba(0,0,0,.15);border-radius:15px;padding:13px 14px;font-size:15px;outline:none;background:#fff;color:#111}
+textarea{min-height:112px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.18)}
+a{text-decoration:none;color:inherit}
+.hidden{display:none!important}.full{grid-column:1/-1}
+.toast{position:fixed;right:18px;top:18px;z-index:99999;display:grid;gap:10px;max-width:min(440px,calc(100vw - 36px))}
+.toast-msg{background:#111;color:#fff;border:1px solid var(--gold);border-radius:16px;padding:13px 15px;font-weight:900;box-shadow:0 16px 40px rgba(0,0,0,.25);line-height:1.35}
+.toast-msg.err{background:#2b1111;border-color:var(--red)}.toast-msg.warn{background:#2b220d;border-color:var(--orange)}.toast-msg.ok{border-color:var(--green)}
+.login-screen{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at top,#33290e,#050505 58%);display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{width:min(470px,100%);background:#111;color:#fff;border:1px solid var(--gold);border-radius:30px;padding:28px;box-shadow:0 30px 90px rgba(0,0,0,.55)}
+.logo-word{font-size:42px;font-weight:1000;letter-spacing:6px;color:#fff;line-height:1}.logo-word span{color:var(--soft)}
+.login-box h2{color:var(--soft);margin:16px 0 8px}.login-box p{color:#bbb;line-height:1.5;margin-bottom:18px}
+.login-box button{width:100%;background:var(--gold);color:#111;padding:15px;border-radius:15px;font-weight:1000;margin-top:12px}
+.panel{display:grid;grid-template-columns:305px 1fr;min-height:100vh}
+.sidebar{background:#090909;color:#fff;padding:18px;position:sticky;top:0;height:100vh;overflow:auto;border-right:1px solid rgba(212,175,55,.25)}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.brand-badge{width:54px;height:54px;border-radius:18px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--soft);font-weight:1000;font-size:23px;background:#111;box-shadow:0 0 28px rgba(212,175,55,.17)}
+.brand strong{font-size:20px;display:block}.brand small{color:var(--gold);font-size:11px;font-weight:900}
+.side-title{color:#777;font-size:11px;font-weight:1000;margin:18px 0 8px;letter-spacing:1px}
+.side-btn{width:100%;background:#151515;color:#fff;border:1px solid rgba(212,175,55,.25);padding:13px 14px;border-radius:16px;margin-bottom:9px;text-align:left;font-weight:1000;display:flex;justify-content:space-between;gap:8px}
+.side-btn:hover,.side-btn.active{border-color:var(--gold);color:var(--soft);box-shadow:0 0 20px rgba(212,175,55,.16)}
+.side-btn span{color:#888}.logout{background:#2b1111;border-color:rgba(214,40,40,.5)}
+.main{padding:24px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px}
+.top h1{font-size:31px}.top p{color:#666;margin-top:6px}
+.top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.pill{background:#111;color:var(--soft);border:1px solid var(--gold);padding:12px 16px;border-radius:999px;font-weight:1000}
+.pill.blue{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border:0}
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid rgba(212,175,55,.32);border-radius:23px;padding:18px;box-shadow:0 14px 35px rgba(0,0,0,.045)}
+.stat p{color:#666;font-weight:1000;font-size:12px}.stat strong{display:block;font-size:26px;margin-top:8px}
+.stat.red{border-color:rgba(214,40,40,.35)}.stat.green{border-color:rgba(23,140,79,.35)}.stat.blue{border-color:rgba(11,92,255,.25)}.stat.purple{border-color:rgba(124,58,237,.25)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:24px}
+.card{background:#fff;border:1px solid rgba(212,175,55,.3);border-radius:24px;padding:20px;box-shadow:0 14px 35px rgba(0,0,0,.05)}
+.card h3{font-size:18px;margin-bottom:8px}.card p{color:#666;line-height:1.45;font-size:14px}
+.card button{margin-top:15px;background:#111;color:var(--soft);border:1px solid var(--gold);padding:11px 14px;border-radius:14px;font-weight:1000}
+.card.big{grid-column:span 2;background:linear-gradient(135deg,#111,#2b220d);color:#fff}.card.big p{color:#ddd}
+.page{display:none}.page.active{display:block}
+.section-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:8px 0 15px}
+.section-head h2{font-size:23px}.section-head p{color:#666;margin-top:5px}
+.filters{display:grid;grid-template-columns:1fr 180px 180px;gap:10px;margin-bottom:14px}
+.table{background:#fff;border:1px solid #e8e8e8;border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.04)}
+.thead,.row{display:grid;gap:12px;align-items:center}.thead{background:#fafafa;border-bottom:1px solid #eee;font-weight:1000;color:#333;padding:16px}.row{padding:16px;border-bottom:1px solid #f1f1f1}.row:last-child{border-bottom:0}
+.grid-users{grid-template-columns:70px 1.2fr 1fr 1fr 130px 245px}
+.grid-posts{grid-template-columns:90px 1.15fr 1fr 120px 120px 230px}
+.grid-ads{grid-template-columns:90px 1.2fr 1fr 120px 120px 235px}
+.grid-reports{grid-template-columns:1.1fr 1fr 140px 120px 245px}
+.grid-simple{grid-template-columns:1.2fr 1fr 160px 245px}
+.grid-cats{grid-template-columns:1fr 150px 1fr 90px 220px}
+.avatar,.thumb{width:58px;height:58px;border-radius:16px;object-fit:cover;background:#eee;border:1px solid #eee}.thumb{width:80px;height:70px}
+.bold{font-weight:1000}.muted{color:#666;font-size:13px;line-height:1.35;margin-top:4px;word-break:break-word}
+.badge{display:inline-flex;align-items:center;justify-content:center;padding:8px 10px;border-radius:12px;font-weight:1000;font-size:13px;text-align:center}
+.b-green{background:#e7f8ed;color:var(--green)}.b-red{background:#ffe5e5;color:var(--red)}.b-orange{background:#fff3d8;color:#a16207}.b-blue{background:#e4efff;color:var(--blue)}.b-gray{background:#eee;color:#333}.b-purple{background:#eee7ff;color:var(--purple)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.btn{padding:10px 12px;border-radius:13px;font-weight:1000}.btn-dark{background:#111;color:var(--soft);border:1px solid var(--gold)}.btn-blue{background:var(--blue);color:#fff}.btn-green{background:var(--green);color:#fff}.btn-red{background:var(--red);color:#fff}.btn-gray{background:#eee;color:#111}.btn-orange{background:var(--orange);color:#111}.btn-purple{background:var(--purple);color:#fff}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.group label{display:block;font-weight:1000;margin-bottom:7px}.save{width:100%;background:#111;color:var(--soft);border:1px solid var(--gold);padding:15px;border-radius:16px;font-weight:1000;font-size:16px}
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:10000;display:none;align-items:center;justify-content:center;padding:18px}.modal-back.active{display:flex}
+.modal-box{width:min(900px,100%);max-height:92vh;overflow:auto;background:#fff;border:1px solid var(--gold);border-radius:25px;padding:20px;box-shadow:0 30px 100px rgba(0,0,0,.45)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.modal-head h3{font-size:22px}.close-x{background:var(--red);color:#fff;border-radius:13px;width:42px;height:42px;font-size:28px;font-weight:1000}
+.empty{background:#fff;border:1px dashed var(--gold);border-radius:20px;padding:28px;text-align:center;color:#777;font-weight:1000}
+.log-box{background:#111;color:#eee;border-radius:20px;padding:15px;max-height:360px;overflow:auto;font-family:monospace;font-size:12px;line-height:1.55}
+.kv{display:grid;grid-template-columns:180px 1fr;gap:8px;border-bottom:1px solid #eee;padding:9px 0}.kv strong{color:#333}.kv span{color:#555;white-space:pre-wrap;word-break:break-word}
+.tree{display:grid;gap:10px}.tree-item{background:#fff;border:1px solid #eee;border-radius:18px;padding:14px}.tree-item b{display:block}.tree-item small{color:#666}
+@media(max-width:1350px){.stats-grid{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.grid-users,.grid-posts,.grid-ads,.grid-reports,.grid-simple,.grid-cats{grid-template-columns:1fr}.thead{display:none}.actions{justify-content:flex-start}.filters{grid-template-columns:1fr}}
+@media(max-width:930px){.panel{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.stats-grid,.cards,.form-grid{grid-template-columns:1fr}.card.big{grid-column:auto}.main{padding:15px}.top{display:block}.top-actions{justify-content:flex-start;margin-top:12px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="logo-word">NO<span>V</span>A</div>
+    <h2>NOVA Mega Panel Girişi</h2>
+    <p>Uygulamadaki kullanıcı, ilan, post, hikaye, bildirim, mağaza, kategori, reklam, sürüm ve sistem ayarlarını tek merkezden yönet.</p>
+    <button id="googleLoginBtn">Google ile Panele Gir</button>
+    <p class="muted" style="margin-top:14px">Giriş için Firestore <b>admins/{uid}</b> kaydı gerekir.</p>
+  </div>
+</div>
+
+<div class="panel">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-badge">N</div><div><strong>NOVA Mega Panel</strong><small>Kaan Ayaz Studio</small></div></div>
+
+    <div class="side-title">KONTROL MERKEZİ</div>
+    <button class="side-btn active" data-page="dashboard">Dashboard <span>›</span></button>
+    <button class="side-btn" data-page="users">Kullanıcılar <span id="cUsers">0</span></button>
+    <button class="side-btn" data-page="moderators">Moderatörler <span id="cModerators">0</span></button>
+    <button class="side-btn" data-page="reports">Şikayet Merkezi <span id="cReports">0</span></button>
+
+    <div class="side-title">SOSYAL ALAN</div>
+    <button class="side-btn" data-page="posts">Postlar <span id="cPosts">0</span></button>
+    <button class="side-btn" data-page="stories">Hikayeler <span id="cStories">0</span></button>
+    <button class="side-btn" data-page="comments">Yorumlar <span id="cComments">0</span></button>
+    <button class="side-btn" data-page="messages">DM / Sohbet <span id="cMessages">0</span></button>
+
+    <div class="side-title">İLAN & MODÜLLER</div>
+    <button class="side-btn" data-page="carAds">Araç İlanları <span id="cCarAds">0</span></button>
+    <button class="side-btn" data-page="towAds">Çekici İlanları <span id="cTowAds">0</span></button>
+    <button class="side-btn" data-page="events">Etkinlikler <span id="cEvents">0</span></button>
+    <button class="side-btn" data-page="expenses">Masraf / Ceza <span id="cExpenses">0</span></button>
+    <button class="side-btn" data-page="store">Mağaza <span id="cStore">0</span></button>
+
+    <div class="side-title">SİSTEM</div>
+    <button class="side-btn" data-page="notifications">Bildirim Gönder <span>+</span></button>
+    <button class="side-btn" data-page="categories">Araç Kategori Ağacı <span>+</span></button>
+    <button class="side-btn" data-page="admob">AdMob / Reklam <span>₺</span></button>
+    <button class="side-btn" data-page="versions">Sürüm Kontrol <span>v</span></button>
+    <button class="side-btn" data-page="settings">Uygulama Ayarları <span>⚙</span></button>
+    <button class="side-btn" data-page="logs">Panel Logları <span>⌁</span></button>
+    <button class="side-btn logout" id="logoutBtn">Çıkış Yap</button>
+  </aside>
+
+  <main class="main">
+    <div class="top">
+      <div><h1>NOVA Mega Yönetim Paneli</h1><p>Tüm NOVA uygulamasını kontrol eden dev panel.</p></div>
+      <div class="top-actions">
+        <button class="pill blue" onclick="refreshAll()">Verileri Yenile</button>
+        <button class="pill" onclick="openModal('systemModal')">Sistem Mesajı</button>
+        <button class="pill" onclick="goPage('settings')">Bakım Modu</button>
+      </div>
+    </div>
+
+    <section class="page active" id="dashboard">
+      <div class="stats-grid">
+        <div class="stat"><p>Kullanıcı</p><strong id="sUsers">0</strong></div>
+        <div class="stat"><p>Post</p><strong id="sPosts">0</strong></div>
+        <div class="stat green"><p>Araç İlanı</p><strong id="sCarAds">0</strong></div>
+        <div class="stat blue"><p>Çekici İlanı</p><strong id="sTowAds">0</strong></div>
+        <div class="stat red"><p>Açık Şikayet</p><strong id="sReports">0</strong></div>
+        <div class="stat purple"><p>Etkinlik</p><strong id="sEvents">0</strong></div>
+        <div class="stat"><p>Mağaza Ürünü</p><strong id="sStore">0</strong></div>
+        <div class="stat"><p>Kategori</p><strong id="sCategories">0</strong></div>
+        <div class="stat red"><p>Banlı Kullanıcı</p><strong id="sBanned">0</strong></div>
+        <div class="stat green"><p>Panel Durumu</p><strong>Aktif</strong></div>
+      </div>
+      <div class="cards">
+        <div class="card big"><h3>Canlı Kontrol Merkezi</h3><p>Kullanıcı banlama, ilan onaylama, post kaldırma, şikayet kapatma, kategori ekleme, bildirim gönderme, AdMob ve sürüm kontrolü tek panelde.</p><button onclick="goPage('reports')">Şikayetleri Aç</button></div>
+        <div class="card"><h3>Kullanıcı Yönetimi</h3><p>Profil, telefon, il/ilçe, gizlilik, ban, doğrulama, rol ve hesap durumu.</p><button onclick="goPage('users')">Aç</button></div>
+        <div class="card"><h3>Araç Kategorileri</h3><p>Vasıta, marka, model, paket, motor ve parça ağacı panelden yönetilir.</p><button onclick="goPage('categories')">Aç</button></div>
+        <div class="card"><h3>Bildirim Sistemi</h3><p>Tek kullanıcıya veya tüm kullanıcılara sistem bildirimi gönder.</p><button onclick="goPage('notifications')">Aç</button></div>
+        <div class="card"><h3>Uygulama Ayarları</h3><p>Bakım modu, kayıt durumu, post/ilan paylaşımı ve zorunlu güncelleme.</p><button onclick="goPage('settings')">Aç</button></div>
+      </div>
+      <div class="section-head"><div><h2>Son Hareketler</h2><p>Firestore'dan gelen son kayıtlar.</p></div></div>
+      <div id="recentBox" class="table"></div>
+    </section>
+
+    <section class="page" id="users">
+      <div class="section-head"><div><h2>Kullanıcılar</h2><p>Tüm kullanıcılar, ban ve profil yönetimi.</p></div></div>
+      <div class="filters"><input id="userSearch" placeholder="Ad, kullanıcı adı, telefon, e-posta ara"><select id="userFilter"><option value="">Tümü</option><option value="banned">Banlı</option><option value="private">Gizli hesap</option><option value="verified">Doğrulanmış</option></select><button class="btn btn-dark" onclick="renderUsers()">Ara</button></div>
+      <div id="usersTable"></div>
+    </section>
+
+    <section class="page" id="moderators">
+      <div class="section-head"><div><h2>Moderatörler</h2><p>Panel erişimi olan hesaplar.</p></div><button class="btn btn-dark" onclick="openModal('moderatorModal')">Moderatör Ekle</button></div>
+      <div id="moderatorsTable"></div>
+    </section>
+
+    <section class="page" id="posts">
+      <div class="section-head"><div><h2>Postlar</h2><p>Paylaşımlar, gizleme ve silme işlemleri.</p></div><button class="btn btn-red" onclick="bulkDelete('posts')">Toplu Temizlik</button></div>
+      <div class="filters"><input id="postSearch" placeholder="Açıklama, kullanıcı, konum ara"><select id="postFilter"><option value="">Tümü</option><option value="reported">Şikayetli</option><option value="hidden">Gizli</option></select><button class="btn btn-dark" onclick="renderPosts()">Ara</button></div>
+      <div id="postsTable"></div>
+    </section>
+
+    <section class="page" id="stories">
+      <div class="section-head"><div><h2>Hikayeler</h2><p>24 saatlik hikayeler ve süresi geçenleri temizleme.</p></div><button class="btn btn-red" onclick="clearExpiredStories()">Süresi Geçenleri Temizle</button></div>
+      <div id="storiesTable"></div>
+    </section>
+
+    <section class="page" id="comments">
+      <div class="section-head"><div><h2>Yorumlar</h2><p>Post, ilan ve çekici yorumları.</p></div></div>
+      <div id="commentsTable"></div>
+    </section>
+
+    <section class="page" id="messages">
+      <div class="section-head"><div><h2>DM / Sohbet</h2><p>Güvenlik için sadece şikayetli sohbet kayıtları gösterilir.</p></div></div>
+      <div id="messagesTable"></div>
+    </section>
+
+    <section class="page" id="reports">
+      <div class="section-head"><div><h2>Şikayet Merkezi</h2><p>Kullanıcı, post, ilan ve mesaj şikayetleri.</p></div><button class="btn btn-green" onclick="markAllReportsReviewed()">Tümünü İncelendi Yap</button></div>
+      <div id="reportsTable"></div>
+    </section>
+
+    <section class="page" id="carAds">
+      <div class="section-head"><div><h2>Araç İlanları</h2><p>2. el araç ilanları, onay, silme ve detay.</p></div></div>
+      <div class="filters"><input id="carSearch" placeholder="Marka, model, şehir, kullanıcı ara"><select id="carFilter"><option value="">Tümü</option><option value="pending">Onay Bekleyen</option><option value="active">Aktif</option><option value="sold">Satıldı</option></select><button class="btn btn-dark" onclick="renderCarAds()">Ara</button></div>
+      <div id="carAdsTable"></div>
+    </section>
+
+    <section class="page" id="towAds">
+      <div class="section-head"><div><h2>Çekici İlanları</h2><p>Acil çekici ilanları, değerlendirme ve yorum kontrolü.</p></div></div>
+      <div id="towAdsTable"></div>
+    </section>
+
+    <section class="page" id="events">
+      <div class="section-head"><div><h2>Etkinlikler</h2><p>Otomobil buluşmaları ve etkinlik kayıtları.</p></div></div>
+      <div id="eventsTable"></div>
+    </section>
+
+    <section class="page" id="expenses">
+      <div class="section-head"><div><h2>Masraf / Ceza Paylaşımları</h2><p>Yakıt, bakım, ceza ve görsel masraf kayıtları.</p></div></div>
+      <div id="expensesTable"></div>
+    </section>
+
+    <section class="page" id="store">
+      <div class="section-head"><div><h2>Mağaza Ürünleri</h2><p>NOVA mağaza ürünleri.</p></div><button class="btn btn-dark" onclick="openModal('productCreateModal')">Ürün Ekle</button></div>
+      <div id="storeTable"></div>
+    </section>
+
+    <section class="page" id="notifications">
+      <div class="section-head"><div><h2>Bildirim Gönder</h2><p>Panelden sistem bildirimi oluştur.</p></div></div>
+      <form class="form-grid" id="notificationForm">
+        <div class="group"><label>Hedef</label><select id="notifTarget"><option value="all">Tüm Kullanıcılar</option><option value="single">Tek Kullanıcı UID</option></select></div>
+        <div class="group"><label>Kullanıcı UID</label><input id="notifUid" placeholder="Tek kullanıcı için UID"></div>
+        <div class="group"><label>Başlık</label><input id="notifTitle" required value="NOVA"></div>
+        <div class="group"><label>Tür</label><select id="notifType"><option>system</option><option>like</option><option>comment</option><option>ad</option><option>message</option><option>follow</option><option>warning</option></select></div>
+        <div class="group full"><label>Mesaj</label><textarea id="notifBody" required placeholder="Kullanıcıya gidecek bildirim metni"></textarea></div>
+        <div class="full"><button class="save">Bildirimi Kaydet / Gönder</button></div>
+      </form>
+    </section>
+
+    <section class="page" id="categories">
+      <div class="section-head"><div><h2>Araç Kategori Ağacı</h2><p>Vasıta > Marka > Model > Paket > Motor sistemi.</p></div><button class="btn btn-dark" onclick="openModal('categoryCreateModal')">Kategori Ekle</button></div>
+      <div id="categoriesTable"></div>
+    </section>
+
+    <section class="page" id="admob">
+      <div class="section-head"><div><h2>AdMob / Reklam Yönetimi</h2><p>Reklam anahtarları ve aç/kapat ayarları.</p></div></div>
+      <form class="form-grid" id="admobForm">
+        <div class="group"><label>Reklamlar Aktif</label><select id="adsEnabled"><option value="false">Kapalı</option><option value="true">Açık</option></select></div>
+        <div class="group"><label>Test Modu</label><select id="adsTestMode"><option value="true">Açık</option><option value="false">Kapalı</option></select></div>
+        <div class="group"><label>Android Banner ID</label><input id="androidBannerId"></div>
+        <div class="group"><label>Android Interstitial ID</label><input id="androidInterstitialId"></div>
+        <div class="group"><label>iOS Banner ID</label><input id="iosBannerId"></div>
+        <div class="group"><label>iOS Interstitial ID</label><input id="iosInterstitialId"></div>
+        <div class="full"><button class="save">AdMob Ayarlarını Kaydet</button></div>
+      </form>
+    </section>
+
+    <section class="page" id="versions">
+      <div class="section-head"><div><h2>Sürüm Kontrol</h2><p>Zorunlu güncelleme ve minimum sürüm.</p></div></div>
+      <form class="form-grid" id="versionForm">
+        <div class="group"><label>Android Minimum Version Code</label><input id="androidMinCode" type="number" value="1"></div>
+        <div class="group"><label>Android Güncel Version Code</label><input id="androidLatestCode" type="number" value="1"></div>
+        <div class="group"><label>iOS Minimum Build</label><input id="iosMinCode" type="number" value="1"></div>
+        <div class="group"><label>iOS Güncel Build</label><input id="iosLatestCode" type="number" value="1"></div>
+        <div class="group"><label>Zorunlu Güncelleme</label><select id="forceUpdate"><option value="false">Kapalı</option><option value="true">Açık</option></select></div>
+        <div class="group"><label>Play Store Link</label><input id="playStoreUrl"></div>
+        <div class="group full"><label>Güncelleme Mesajı</label><textarea id="updateMessage">NOVA'nın yeni sürümü mevcut.</textarea></div>
+        <div class="full"><button class="save">Sürüm Ayarlarını Kaydet</button></div>
+      </form>
+    </section>
+
+    <section class="page" id="settings">
+      <div class="section-head"><div><h2>Uygulama Ayarları</h2><p>Bakım modu ve genel sistem kontrolleri.</p></div></div>
+      <form class="form-grid" id="settingsForm">
+        <div class="group"><label>Bakım Modu</label><select id="maintenance"><option value="false">Kapalı</option><option value="true">Açık</option></select></div>
+        <div class="group"><label>Yeni Kayıt</label><select id="registerOpen"><option value="true">Açık</option><option value="false">Kapalı</option></select></div>
+        <div class="group"><label>Post Paylaşımı</label><select id="postOpen"><option value="true">Açık</option><option value="false">Kapalı</option></select></div>
+        <div class="group"><label>İlan Paylaşımı</label><select id="adOpen"><option value="true">Açık</option><option value="false">Kapalı</option></select></div>
+        <div class="group"><label>DM Sistemi</label><select id="dmOpen"><option value="true">Açık</option><option value="false">Kapalı</option></select></div>
+        <div class="group"><label>Story Sistemi</label><select id="storyOpen"><option value="true">Açık</option><option value="false">Kapalı</option></select></div>
+        <div class="group full"><label>Bakım Mesajı</label><textarea id="maintenanceText">NOVA kısa süreli bakımdadır.</textarea></div>
+        <div class="full"><button class="save">Ayarları Kaydet</button></div>
+      </form>
+    </section>
+
+    <section class="page" id="logs">
+      <div class="section-head"><div><h2>Panel Logları</h2><p>Panelde yapılan işlemler.</p></div><button class="btn btn-red" onclick="clearLogs()">Yerel Logları Temizle</button></div>
+      <div class="log-box" id="logBox"></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-back" id="detailModal"><div class="modal-box"><div class="modal-head"><h3 id="detailTitle">Detay</h3><button class="close-x" onclick="closeModal('detailModal')">×</button></div><div id="detailBody"></div></div></div>
+
+<div class="modal-back" id="systemModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Sistem Mesajı</h3><button class="close-x" onclick="closeModal('systemModal')">×</button></div>
+    <form id="systemQuickForm" class="form-grid">
+      <div class="group"><label>Başlık</label><input id="quickTitle" value="NOVA"></div>
+      <div class="group"><label>Seviye</label><select id="quickLevel"><option>info</option><option>warning</option><option>danger</option></select></div>
+      <div class="group full"><label>Mesaj</label><textarea id="quickBody">NOVA sisteminden bilgilendirme.</textarea></div>
+      <div class="full"><button class="save">Kaydet</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-back" id="categoryCreateModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Kategori Ekle</h3><button class="close-x" onclick="closeModal('categoryCreateModal')">×</button></div>
+    <form id="categoryForm" class="form-grid">
+      <div class="group"><label>Tip</label><select id="catType"><option>vehicleType</option><option>brand</option><option>model</option><option>package</option><option>engine</option><option>part</option></select></div>
+      <div class="group"><label>Üst ID</label><input id="catParentId" placeholder="Yoksa boş"></div>
+      <div class="group"><label>Ad</label><input id="catName" required placeholder="BMW / 3 Serisi / 320i"></div>
+      <div class="group"><label>Sıra</label><input id="catOrder" type="number" value="0"></div>
+      <div class="group full"><label>Açıklama</label><textarea id="catDesc"></textarea></div>
+      <div class="full"><button class="save">Kategori Kaydet</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-back" id="productCreateModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Mağaza Ürünü Ekle</h3><button class="close-x" onclick="closeModal('productCreateModal')">×</button></div>
+    <form id="productForm" class="form-grid">
+      <div class="group"><label>Ürün Adı</label><input id="prodName" required></div>
+      <div class="group"><label>Fiyat</label><input id="prodPrice" type="number" required></div>
+      <div class="group"><label>Stok</label><input id="prodStock" type="number" value="1"></div>
+      <div class="group"><label>Kategori</label><input id="prodCategory" placeholder="Aksesuar"></div>
+      <div class="group full"><label>Görsel URL</label><input id="prodImage"></div>
+      <div class="group full"><label>Açıklama</label><textarea id="prodDesc"></textarea></div>
+      <div class="full"><button class="save">Ürünü Kaydet</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-back" id="moderatorModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Moderatör Ekle</h3><button class="close-x" onclick="closeModal('moderatorModal')">×</button></div>
+    <form id="moderatorForm" class="form-grid">
+      <div class="group"><label>Kullanıcı UID</label><input id="modUid" required></div>
+      <div class="group"><label>Rol</label><select id="modRole"><option>moderator</option><option>superadmin</option></select></div>
+      <div class="group"><label>Ad</label><input id="modName"></div>
+      <div class="group"><label>Aktif</label><select id="modActive"><option value="true">Aktif</option><option value="false">Pasif</option></select></div>
+      <div class="full"><button class="save">Yetki Ver</button></div>
+    </form>
+  </div>
+</div>
+
+<script>
+const COLLECTIONS={
+  users:'users',
+  usernames:'usernames',
+  admins:'admins',
+  moderators:'admins',
+  posts:'posts',
+  stories:'stories',
+  comments:'comments',
+  conversations:'conversations',
+  messages:'messages',
+  reports:'reports',
+  carAds:'carAds',
+  towAds:'towAds',
+  towTruckAds:'towTruckAds',
+  events:'events',
+  expenses:'expenses',
+  store:'storeProducts',
+  notifications:'notifications',
+  categories:'vehicleCategories',
+  settings:'appSettings',
+  admob:'admobSettings',
+  versions:'appVersions',
+  systemMessages:'systemMessages',
+  logs:'panelLogs'
+};
+
+let DB=null,AUTH=null,USER=null;
+let state={users:[],moderators:[],posts:[],stories:[],comments:[],messages:[],reports:[],carAds:[],towAds:[],events:[],expenses:[],store:[],categories:[],logs:[]};
+
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[m]));
+const money=n=>'₺'+Number(n||0).toLocaleString('tr-TR');
+const dateText=v=>{try{if(!v)return'-';if(v.toDate)return v.toDate().toLocaleString('tr-TR');if(typeof v==='number')return new Date(v).toLocaleString('tr-TR');return new Date(v).toLocaleString('tr-TR')}catch(e){return'-'}};
+function toast(msg,type='ok'){const t=$('toast');const d=document.createElement('div');d.className='toast-msg '+type;d.textContent=msg;t.appendChild(d);setTimeout(()=>d.remove(),4200)}
+function log(msg,type='INFO'){const line=`[${new Date().toLocaleString('tr-TR')}] ${type}: ${msg}`;const old=localStorage.getItem('novaMegaPanelLogs')||'';localStorage.setItem('novaMegaPanelLogs',line+'\n'+old);renderLogs()}
+function renderLogs(){if($('logBox'))$('logBox').textContent=localStorage.getItem('novaMegaPanelLogs')||'Henüz log yok.'}
+function clearLogs(){localStorage.removeItem('novaMegaPanelLogs');renderLogs();toast('Yerel loglar temizlendi.')}
+function openModal(id){$(id)?.classList.add('active')}function closeModal(id){$(id)?.classList.remove('active')}
+function goPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.side-btn').forEach(b=>b.classList.remove('active'));$(id)?.classList.add('active');document.querySelector(`[data-page="${id}"]`)?.classList.add('active')}
+document.querySelectorAll('.side-btn[data-page]').forEach(btn=>btn.onclick=()=>goPage(btn.dataset.page));
+function img(src,cls='thumb'){return src?`<img class="${cls}" src="${esc(src)}" onerror="this.style.display='none'">`:`<div class="${cls}"></div>`}
+function statusBadge(text){const t=String(text||'aktif').toLowerCase();if(t.includes('ban')||t.includes('sil')||t.includes('red')||t.includes('pasif')||t.includes('kapalı'))return `<span class="badge b-red">${esc(text||'')}</span>`;if(t.includes('bek')||t.includes('ince'))return `<span class="badge b-orange">${esc(text||'')}</span>`;if(t.includes('onay')||t.includes('aktif')||t.includes('yay')||t.includes('açık'))return `<span class="badge b-green">${esc(text||'')}</span>`;if(t.includes('admin')||t.includes('mod'))return `<span class="badge b-purple">${esc(text||'-')}</span>`;return `<span class="badge b-gray">${esc(text||'-')}</span>`}
+function detail(title,obj){$('detailTitle').textContent=title;$('detailBody').innerHTML=Object.entries(obj||{}).map(([k,v])=>`<div class="kv"><strong>${esc(k)}</strong><span>${esc(typeof v==='object'?JSON.stringify(v,null,2):v)}</span></div>`).join('');openModal('detailModal')}
+function safeObj(o){return JSON.stringify(o).replaceAll("'","&#039;").replaceAll("</","<\\/")}
+function table(head,rowClass,rows,empty='Kayıt yok.'){if(!rows.length)return `<div class="empty">${empty}</div>`;return `<div class="table"><div class="thead ${rowClass}">${head.map(h=>`<div>${h}</div>`).join('')}</div>${rows.join('')}</div>`}
+function updateCounts(){
+  const pairs=[['Users','users'],['Moderators','moderators'],['Posts','posts'],['Stories','stories'],['Comments','comments'],['Messages','messages'],['Reports','reports'],['CarAds','carAds'],['TowAds','towAds'],['Events','events'],['Expenses','expenses'],['Store','store'],['Categories','categories']];
+  pairs.forEach(([a,k])=>{if($('c'+a))$('c'+a).textContent=state[k].length;if($('s'+a))$('s'+a).textContent=state[k].length});
+  if($('sReports'))$('sReports').textContent=state.reports.filter(x=>x.status!=='reviewed'&&x.status!=='closed').length;
+  if($('sBanned'))$('sBanned').textContent=state.users.filter(x=>x.banned).length;
+  renderRecent();
+}
+function renderRecent(){
+  const items=[...state.users.slice(0,3).map(x=>({type:'Kullanıcı',title:x.username||x.displayName||x.name||x.id,date:x.createdAt})),...state.posts.slice(0,3).map(x=>({type:'Post',title:x.caption||x.description||x.id,date:x.createdAt})),...state.reports.slice(0,3).map(x=>({type:'Şikayet',title:x.reason||x.message||x.id,date:x.createdAt})),...state.carAds.slice(0,3).map(x=>({type:'Araç İlanı',title:`${x.brand||''} ${x.model||''}`.trim()||x.title||x.id,date:x.createdAt}))].sort((a,b)=>(b.date?.seconds||0)-(a.date?.seconds||0)).slice(0,12);
+  $('recentBox').innerHTML=items.length?items.map(x=>`<div class="row grid-simple"><div><b>${esc(x.title)}</b><div class="muted">${esc(x.type)}</div></div><div>${dateText(x.date)}</div><div>${statusBadge('Yeni')}</div><div class="actions"><button class="btn btn-dark">Kontrol</button></div></div>`).join(''):`<div class="empty">Henüz hareket yok.</div>`;
+}
+function renderAll(){renderUsers();renderModerators();renderPosts();renderStories();renderComments();renderMessages();renderReports();renderCarAds();renderTowAds();renderEvents();renderExpenses();renderStore();renderCategories();updateCounts();renderLogs()}
+
+function renderUsers(){const s=($('userSearch')?.value||'').toLowerCase(),f=$('userFilter')?.value||'';const list=state.users.filter(u=>{const hay=`${u.displayName||''}${u.name||''}${u.username||''}${u.email||''}${u.phone||''}${u.city||''}`.toLowerCase();if(!hay.includes(s))return false;if(f==='banned')return !!u.banned;if(f==='private')return !!u.isPrivate||!!u.privateAccount;if(f==='verified')return !!u.verified;return true});$('usersTable').innerHTML=table(['Foto','Kullanıcı','İletişim','Konum','Durum','İşlem'],'grid-users',list.map(u=>`<div class="row grid-users"><div>${img(u.photoUrl||u.profileImage||u.profilePhoto,'avatar')}</div><div><div class="bold">${esc(u.displayName||u.name||'İsimsiz')}</div><div class="muted">@${esc(u.username||'-')} • UID: ${esc(u.id)}</div></div><div><div>${esc(u.email||'-')}</div><div class="muted">${esc(u.phone||'-')}</div></div><div>${esc(u.city||u.il||'-')} / ${esc(u.district||u.ilce||'-')}</div><div>${u.banned?statusBadge('Banlı'):u.verified?statusBadge('Onaylı'):statusBadge('Aktif')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Kullanıcı Detayı",${safeObj(u)})'>Detay</button><button class="btn btn-orange" onclick="toggleUserBan('${u.id}',${!u.banned})">${u.banned?'Ban Aç':'Banla'}</button><button class="btn btn-purple" onclick="verifyUser('${u.id}',${!u.verified})">${u.verified?'Onayı Kaldır':'Onayla'}</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.users,'${u.id}')">Sil</button></div></div>`),'Kullanıcı yok.')}
+function renderModerators(){$('moderatorsTable').innerHTML=table(['Ad','Rol','Aktif','İşlem'],'grid-simple',state.moderators.map(m=>`<div class="row grid-simple"><div><b>${esc(m.name||m.id)}</b><div class="muted">${esc(m.id)}</div></div><div>${statusBadge(m.role||'moderator')}</div><div>${statusBadge(m.active===false?'Pasif':'Aktif')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Moderatör Detayı",${safeObj(m)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.admins,'${m.id}')">Yetkiyi Sil</button></div></div>`),'Moderatör yok.')}
+function renderPosts(){const s=($('postSearch')?.value||'').toLowerCase();const list=state.posts.filter(p=>`${p.caption||''}${p.description||''}${p.location||''}${p.username||''}`.toLowerCase().includes(s));$('postsTable').innerHTML=table(['Görsel','Post','Kullanıcı','Beğeni','Durum','İşlem'],'grid-posts',list.map(p=>`<div class="row grid-posts"><div>${img((p.images&&p.images[0])||p.imageUrl||p.photoUrl)}</div><div><div class="bold">${esc((p.caption||p.description||'Post').slice(0,70))}</div><div class="muted">${dateText(p.createdAt)}</div></div><div>${esc(p.username||p.userName||p.ownerName||p.uid||'-')}</div><div>${Number(p.likesCount||p.likes?.length||0)} beğeni<br><span class="muted">${Number(p.commentsCount||0)} yorum</span></div><div>${p.hidden?statusBadge('Gizli'):statusBadge('Yayında')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Post Detayı",${safeObj(p)})'>Detay</button><button class="btn btn-orange" onclick="toggleField(COLLECTIONS.posts,'${p.id}','hidden',${!p.hidden})">${p.hidden?'Göster':'Gizle'}</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.posts,'${p.id}')">Sil</button></div></div>`),'Post yok.')}
+function renderStories(){$('storiesTable').innerHTML=table(['Görsel','Hikaye','Kullanıcı','Tarih','Durum','İşlem'],'grid-posts',state.stories.map(x=>`<div class="row grid-posts"><div>${img(x.imageUrl||x.mediaUrl)}</div><div><b>${esc(x.text||'Hikaye')}</b><div class="muted">${dateText(x.createdAt)}</div></div><div>${esc(x.username||x.uid||'-')}</div><div>${dateText(x.expiresAt)}</div><div>${statusBadge('Aktif')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Hikaye Detayı",${safeObj(x)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.stories,'${x.id}')">Sil</button></div></div>`),'Hikaye yok.')}
+function renderComments(){$('commentsTable').innerHTML=table(['Yorum','Kullanıcı','Tarih','İşlem'],'grid-simple',state.comments.map(c=>`<div class="row grid-simple"><div><b>${esc(c.text||c.comment||'Yorum')}</b><div class="muted">Hedef: ${esc(c.postId||c.targetId||'-')}</div></div><div>${esc(c.username||c.uid||'-')}</div><div>${dateText(c.createdAt)}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Yorum Detayı",${safeObj(c)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.comments,'${c.id}')">Sil</button></div></div>`),'Yorum yok.')}
+function renderMessages(){$('messagesTable').innerHTML=table(['Sohbet','Kullanıcılar','Tarih','İşlem'],'grid-simple',state.messages.map(c=>`<div class="row grid-simple"><div><b>${esc(c.lastMessage||c.title||'Sohbet')}</b><div class="muted">${esc(c.id)}</div></div><div>${esc((c.participants||[]).join(' / ')||c.uid||'-')}</div><div>${dateText(c.updatedAt||c.createdAt)}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Sohbet Detayı",${safeObj(c)})'>Detay</button></div></div>`),'Şikayetli sohbet yok.')}
+function renderReports(){$('reportsTable').innerHTML=table(['Şikayet','Hedef','Tarih','Durum','İşlem'],'grid-reports',state.reports.map(r=>`<div class="row grid-reports"><div><b>${esc(r.reason||r.title||'Şikayet')}</b><div class="muted">${esc(r.message||r.description||'')}</div></div><div>${esc(r.targetType||'-')} • ${esc(r.targetId||'-')}</div><div>${dateText(r.createdAt)}</div><div>${statusBadge(r.status||'Bekliyor')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Şikayet Detayı",${safeObj(r)})'>Detay</button><button class="btn btn-green" onclick="toggleField(COLLECTIONS.reports,'${r.id}','status','reviewed')">İncelendi</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.reports,'${r.id}')">Sil</button></div></div>`),'Şikayet yok.')}
+function adRow(a,type,col){return `<div class="row grid-ads"><div>${img((a.images&&a.images[0])||a.imageUrl)}</div><div><b>${esc(a.title||`${a.brand||''} ${a.model||''}`.trim()||type)}</b><div class="muted">${esc(a.city||a.il||'-')} / ${esc(a.district||a.ilce||'-')}</div></div><div>${esc(a.username||a.ownerName||a.uid||a.userId||'-')}</div><div class="bold">${money(a.price||a.fee)}</div><div>${statusBadge(a.status||'Aktif')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("${type} Detayı",${safeObj(a)})'>Detay</button><button class="btn btn-green" onclick="toggleField('${col}','${a.id}','status','active')">Onayla</button><button class="btn btn-orange" onclick="toggleField('${col}','${a.id}','status','sold')">Satıldı</button><button class="btn btn-red" onclick="deleteDocById('${col}','${a.id}')">Sil</button></div></div>`}
+function renderCarAds(){const s=($('carSearch')?.value||'').toLowerCase();$('carAdsTable').innerHTML=table(['Görsel','İlan','Sahip','Fiyat','Durum','İşlem'],'grid-ads',state.carAds.filter(a=>`${a.title||''}${a.brand||''}${a.model||''}${a.city||''}${a.username||''}`.toLowerCase().includes(s)).map(a=>adRow(a,'Araç İlanı',COLLECTIONS.carAds)),'Araç ilanı yok.')}
+function renderTowAds(){$('towAdsTable').innerHTML=table(['Görsel','İlan','Sahip','Ücret','Durum','İşlem'],'grid-ads',state.towAds.map(a=>adRow(a,'Çekici İlanı',a._collection||COLLECTIONS.towAds)),'Çekici ilanı yok.')}
+function renderEvents(){$('eventsTable').innerHTML=table(['Etkinlik','Konum','Tarih','Durum','İşlem'],'grid-simple',state.events.map(e=>`<div class="row grid-simple"><div><b>${esc(e.title||'Etkinlik')}</b><div class="muted">${esc(e.description||'')}</div></div><div>${esc(e.city||e.il||'-')} / ${esc(e.district||e.ilce||'-')}</div><div>${dateText(e.eventDate||e.date||e.createdAt)}</div><div>${statusBadge(e.status||'Aktif')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Etkinlik Detayı",${safeObj(e)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.events,'${e.id}')">Sil</button></div></div>`),'Etkinlik yok.')}
+function renderExpenses(){$('expensesTable').innerHTML=table(['Masraf','Kullanıcı','Tutar','İşlem'],'grid-simple',state.expenses.map(e=>`<div class="row grid-simple"><div><b>${esc(e.title||e.type||'Masraf')}</b><div class="muted">${esc(e.description||'')}</div></div><div>${esc(e.username||e.uid||'-')}</div><div class="bold">${money(e.amount||e.price)}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Masraf Detayı",${safeObj(e)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.expenses,'${e.id}')">Sil</button></div></div>`),'Masraf kaydı yok.')}
+function renderStore(){$('storeTable').innerHTML=table(['Görsel','Ürün','Kategori','Stok','İşlem'],'grid-posts',state.store.map(p=>`<div class="row grid-posts"><div>${img(p.imageUrl)}</div><div><b>${esc(p.name||'Ürün')}</b><div class="muted">${money(p.price)}</div></div><div>${esc(p.category||'-')}</div><div>${Number(p.stock||0)}</div><div>${statusBadge(p.active===false?'Kapalı':'Yayında')}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Ürün Detayı",${safeObj(p)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.store,'${p.id}')">Sil</button></div></div>`),'Ürün yok.')}
+function renderCategories(){$('categoriesTable').innerHTML=table(['Ad','Tip','Üst ID','Sıra','İşlem'],'grid-cats',state.categories.map(c=>`<div class="row grid-cats"><div><b>${esc(c.name)}</b><div class="muted">${esc(c.description||'')}</div></div><div>${statusBadge(c.type||'-')}</div><div>${esc(c.parentId||'-')}</div><div>${Number(c.order||0)}</div><div class="actions"><button class="btn btn-dark" onclick='detail("Kategori Detayı",${safeObj(c)})'>Detay</button><button class="btn btn-red" onclick="deleteDocById(COLLECTIONS.categories,'${c.id}')">Sil</button></div></div>`),'Kategori yok.')}
+function refreshAll(){renderAll();toast('Panel yenilendi.')}
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getFirestore, collection, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp, limit } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig={
+  apiKey:"AIzaSyB13nchklTFKhVsVNijjMVzjqt44mARHpA",
+  authDomain:"nova-b94ea.firebaseapp.com",
+  projectId:"nova-b94ea",
+  storageBucket:"nova-b94ea.firebasestorage.app",
+  messagingSenderId:"246479965459",
+  appId:"1:246479965459:web:a0e9eada2a916957b75ee6",
+  measurementId:"G-4LRCZBLJED"
+};
+
+const app=initializeApp(firebaseConfig);
+DB=getFirestore(app);
+AUTH=getAuth(app);
+
+async function isAdmin(uid){const snap=await getDoc(doc(DB,COLLECTIONS.admins,uid));return snap.exists()&&snap.data().active!==false}
+async function addPanelLog(text){try{await addDoc(collection(DB,COLLECTIONS.logs),{text,uid:USER?.uid||'',email:USER?.email||'',createdAt:serverTimestamp()})}catch(e){}log(text)}
+function watchCollection(key,col,opts={}){
+  try{
+    onSnapshot(query(collection(DB,col),orderBy('createdAt','desc'),limit(400)),snap=>{
+      const arr=[];snap.forEach(d=>arr.push({id:d.id,_collection:col,...d.data()}));
+      if(opts.append)state[key]=[...state[key].filter(x=>x._collection!==col),...arr];else state[key]=arr;
+      renderAll();
+    },err=>{toast(`${col} okunamadı: ${err.message}`,'err');log(`${col} hata: ${err.message}`,'ERR')});
+  }catch(e){
+    onSnapshot(collection(DB,col),snap=>{
+      const arr=[];snap.forEach(d=>arr.push({id:d.id,_collection:col,...d.data()}));
+      if(opts.append)state[key]=[...state[key].filter(x=>x._collection!==col),...arr];else state[key]=arr;
+      renderAll();
+    });
+  }
+}
+function startWatchers(){
+  watchCollection('users',COLLECTIONS.users);
+  watchCollection('moderators',COLLECTIONS.admins);
+  watchCollection('posts',COLLECTIONS.posts);
+  watchCollection('stories',COLLECTIONS.stories);
+  watchCollection('comments',COLLECTIONS.comments);
+  watchCollection('messages',COLLECTIONS.conversations);
+  watchCollection('reports',COLLECTIONS.reports);
+  watchCollection('carAds',COLLECTIONS.carAds);
+  watchCollection('towAds',COLLECTIONS.towAds);
+  watchCollection('towAds',COLLECTIONS.towTruckAds,{append:true});
+  watchCollection('events',COLLECTIONS.events);
+  watchCollection('expenses',COLLECTIONS.expenses);
+  watchCollection('store',COLLECTIONS.store);
+  watchCollection('categories',COLLECTIONS.categories);
+}
+$('googleLoginBtn').onclick=async()=>{try{await signInWithPopup(AUTH,new GoogleAuthProvider())}catch(e){toast(e.message,'err')}};
+$('logoutBtn').onclick=()=>signOut(AUTH);
+onAuthStateChanged(AUTH,async user=>{
+  if(!user){$('loginScreen').style.display='flex';return}
+  USER=user;
+  const ok=await isAdmin(user.uid);
+  if(!ok){toast('Bu hesap admin değil. admins/{uid} kaydı gerekli.','err');await signOut(AUTH);return}
+  $('loginScreen').style.display='none';toast('Panel girişi başarılı.');addPanelLog('Panel girişi yapıldı.');startWatchers();
+});
+
+window.toggleUserBan=async(id,value)=>{await updateDoc(doc(DB,COLLECTIONS.users,id),{banned:value,bannedAt:value?serverTimestamp():null});addPanelLog(`Kullanıcı ${value?'banlandı':'banı açıldı'}: ${id}`)};
+window.verifyUser=async(id,value)=>{await updateDoc(doc(DB,COLLECTIONS.users,id),{verified:value,verifiedAt:value?serverTimestamp():null});addPanelLog(`Kullanıcı onay durumu değişti: ${id}`)};
+window.toggleField=async(col,id,field,value)=>{await updateDoc(doc(DB,col,id),{[field]:value,updatedAt:serverTimestamp()});addPanelLog(`${col}/${id} alanı güncellendi: ${field}`)};
+window.deleteDocById=(col,id)=>{if(!confirm('Bu kayıt silinsin mi?'))return;deleteDoc(doc(DB,col,id)).then(()=>{toast('Kayıt silindi.');addPanelLog(`Silindi: ${col}/${id}`)}).catch(e=>toast(e.message,'err'))};
+window.bulkDelete=()=>toast('Toplu silme için filtreli Cloud Function önerilir.','warn');
+window.clearExpiredStories=()=>toast('Süresi geçen hikayeler için Cloud Function önerilir.','warn');
+window.markAllReportsReviewed=async()=>{for(const r of state.reports.filter(x=>x.status!=='reviewed'))await updateDoc(doc(DB,COLLECTIONS.reports,r.id),{status:'reviewed',reviewedAt:serverTimestamp()});toast('Tüm şikayetler incelendi yapıldı.')};
+
+$('notificationForm').addEventListener('submit',async e=>{e.preventDefault();const target=$('notifTarget').value,uid=$('notifUid').value.trim();if(target==='single'&&!uid)return toast('Tek kullanıcı için UID gir.','err');await addDoc(collection(DB,COLLECTIONS.notifications),{target,uid:target==='single'?uid:'',title:$('notifTitle').value.trim(),body:$('notifBody').value.trim(),type:$('notifType').value,read:false,createdAt:serverTimestamp(),createdBy:USER.uid});toast('Bildirim kaydedildi.');addPanelLog('Panelden bildirim oluşturuldu.');e.target.reset()});
+$('systemQuickForm').addEventListener('submit',async e=>{e.preventDefault();await addDoc(collection(DB,COLLECTIONS.systemMessages),{title:$('quickTitle').value,body:$('quickBody').value,level:$('quickLevel').value,active:true,createdAt:serverTimestamp(),createdBy:USER.uid});closeModal('systemModal');toast('Sistem mesajı kaydedildi.')});
+$('categoryForm').addEventListener('submit',async e=>{e.preventDefault();await addDoc(collection(DB,COLLECTIONS.categories),{type:$('catType').value,parentId:$('catParentId').value.trim(),name:$('catName').value.trim(),order:Number($('catOrder').value||0),description:$('catDesc').value.trim(),active:true,createdAt:serverTimestamp()});closeModal('categoryCreateModal');e.target.reset();toast('Kategori eklendi.')});
+$('productForm').addEventListener('submit',async e=>{e.preventDefault();await addDoc(collection(DB,COLLECTIONS.store),{name:$('prodName').value.trim(),price:Number($('prodPrice').value||0),stock:Number($('prodStock').value||0),category:$('prodCategory').value.trim(),imageUrl:$('prodImage').value.trim(),description:$('prodDesc').value.trim(),active:true,createdAt:serverTimestamp()});closeModal('productCreateModal');e.target.reset();toast('Ürün eklendi.')});
+$('moderatorForm').addEventListener('submit',async e=>{e.preventDefault();const uid=$('modUid').value.trim();await setDoc(doc(DB,COLLECTIONS.admins,uid),{active:$('modActive').value==='true',role:$('modRole').value,name:$('modName').value.trim(),createdAt:serverTimestamp(),createdBy:USER.uid},{merge:true});closeModal('moderatorModal');e.target.reset();toast('Moderatör kaydedildi.')});
+$('settingsForm').addEventListener('submit',async e=>{e.preventDefault();await setDoc(doc(DB,COLLECTIONS.settings,'general'),{maintenance:$('maintenance').value==='true',registerOpen:$('registerOpen').value==='true',postOpen:$('postOpen').value==='true',adOpen:$('adOpen').value==='true',dmOpen:$('dmOpen').value==='true',storyOpen:$('storyOpen').value==='true',maintenanceText:$('maintenanceText').value,updatedAt:serverTimestamp(),updatedBy:USER.uid},{merge:true});toast('Ayarlar kaydedildi.');addPanelLog('Uygulama ayarları güncellendi.')});
+$('admobForm').addEventListener('submit',async e=>{e.preventDefault();await setDoc(doc(DB,COLLECTIONS.admob,'general'),{adsEnabled:$('adsEnabled').value==='true',testMode:$('adsTestMode').value==='true',androidBannerId:$('androidBannerId').value,androidInterstitialId:$('androidInterstitialId').value,iosBannerId:$('iosBannerId').value,iosInterstitialId:$('iosInterstitialId').value,updatedAt:serverTimestamp(),updatedBy:USER.uid},{merge:true});toast('AdMob ayarları kaydedildi.')});
+$('versionForm').addEventListener('submit',async e=>{e.preventDefault();await setDoc(doc(DB,COLLECTIONS.versions,'general'),{androidMinCode:Number($('androidMinCode').value||1),androidLatestCode:Number($('androidLatestCode').value||1),iosMinCode:Number($('iosMinCode').value||1),iosLatestCode:Number($('iosLatestCode').value||1),forceUpdate:$('forceUpdate').value==='true',playStoreUrl:$('playStoreUrl').value,updateMessage:$('updateMessage').value,updatedAt:serverTimestamp(),updatedBy:USER.uid},{merge:true});toast('Sürüm ayarları kaydedildi.')});
+renderLogs();
+</script>
+</body>
+</html>
