@@ -3,495 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaan Ayaz | Web Developer</title>
-  <meta name="description" content="Kaan Ayaz Web Developer - Freelance web site, mobil uyumlu tasarım, portföy ve iletişim sayfası." />
-  <meta name="theme-color" content="#050505" />
-
+  <title>Kaan Ayaz | Web & Mobil Developer</title>
+  <meta name="description" content="Kaan Ayaz Web Developer - Profesyonel web tasarım, mobil uygulama, yönetim paneli, e-ticaret ve NOVA otomotiv sosyal platformu." />
+  <meta name="keywords" content="Kaan Ayaz, web developer, mobil uygulama, web tasarım, NOVA, Flutter, Firebase, Eskişehir web tasarım" />
+  <meta name="author" content="Kaan Ayaz" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="Kaan Ayaz | Web & Mobil Developer" />
+  <meta property="og:description" content="Modern, hızlı, mobil uyumlu web siteleri ve mobil uygulama projeleri." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kaanayaz.com.tr" />
+  <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f6f7fb;
-      --card:#ffffff;
-      --text:#111111;
-      --muted:#666b76;
-      --line:#e7e9ef;
-      --dark:#050505;
-      --accent:#111111;
-      --soft:#f1f2f6;
-      --radius:24px;
-      --shadow:0 20px 60px rgba(0,0,0,.10);
+      --white:#ffffff; --cream:#fffdf4; --black:#080808; --text:#101214; --muted:#606772;
+      --green:#129b4f; --green2:#0b6f3a; --yellow:#ffd21f; --yellow2:#f4b400;
+      --line:#e9edf2; --soft:#f7f9fb; --card:#ffffff; --shadow:0 24px 70px rgba(0,0,0,.10);
+      --radius:28px;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-
-    .wrap{width:min(1120px,92%);margin:auto}
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(246,247,251,.82);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:900;
-      letter-spacing:.5px;
-    }
-
-    .logo{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      background:#050505;
-      color:#fff;
-      display:grid;
-      place-items:center;
-      font-size:18px;
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
-    }
-
-    .navlinks{
-      display:flex;
-      align-items:center;
-      gap:22px;
-      color:#333;
-      font-size:14px;
-      font-weight:700;
-    }
-
-    .navlinks a:hover{opacity:.6}
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:48px;
-      padding:0 22px;
-      border-radius:999px;
-      font-weight:800;
-      border:1px solid var(--dark);
-      transition:.2s;
-    }
-
-    .btn.dark{
-      background:var(--dark);
-      color:#fff;
-      box-shadow:0 12px 30px rgba(0,0,0,.18);
-    }
-
-    .btn.light{
-      background:#fff;
-      color:#111;
-    }
-
-    .btn:hover{transform:translateY(-2px)}
-
-    .hero{
-      padding:86px 0 60px;
-    }
-
-    .heroGrid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:34px;
-      align-items:center;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:10px 14px;
-      color:#333;
-      font-size:14px;
-      font-weight:800;
-      margin-bottom:22px;
-    }
-
-    h1{
-      font-size:clamp(42px,7vw,82px);
-      line-height:.98;
-      letter-spacing:-3px;
-      margin-bottom:22px;
-    }
-
-    .hero p{
-      font-size:19px;
-      color:var(--muted);
-      max-width:650px;
-      margin-bottom:30px;
-    }
-
-    .actions{display:flex;gap:12px;flex-wrap:wrap}
-
-    .panel{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:22px;
-      overflow:hidden;
-    }
-
-    .screenTop{
-      display:flex;
-      gap:8px;
-      margin-bottom:18px;
-    }
-
-    .dot{width:12px;height:12px;border-radius:50%;background:#ddd}
-    .dot:nth-child(1){background:#ff5f57}
-    .dot:nth-child(2){background:#ffbd2e}
-    .dot:nth-child(3){background:#28c840}
-
-    .codebox{
-      background:#080808;
-      color:#f7f7f7;
-      border-radius:20px;
-      padding:26px;
-      font-family:Consolas, monospace;
-      min-height:330px;
-    }
-
-    .codebox span{color:#8cffb0}
-    .codebox .gray{color:#888}
-
-    section{padding:58px 0}
-
-    .sectionTitle{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:20px;
-      margin-bottom:24px;
-    }
-
-    h2{
-      font-size:clamp(30px,4vw,46px);
-      letter-spacing:-1.5px;
-      line-height:1.05;
-    }
-
-    .sectionTitle p{color:var(--muted);max-width:470px}
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-
-    .card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:26px;
-      min-height:190px;
-      transition:.2s;
-    }
-
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:var(--shadow);
-    }
-
-    .icon{
-      width:48px;
-      height:48px;
-      border-radius:16px;
-      background:#111;
-      color:#fff;
-      display:grid;
-      place-items:center;
-      font-size:22px;
-      margin-bottom:16px;
-    }
-
-    .card h3{font-size:21px;margin-bottom:10px}
-    .card p{color:var(--muted)}
-
-    .projects{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
-    }
-
-    .project{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:26px;
-      overflow:hidden;
-      box-shadow:0 10px 35px rgba(0,0,0,.06);
-    }
-
-    .projectImg{
-      height:220px;
-      background:
-        radial-gradient(circle at top left, rgba(0,0,0,.25), transparent 35%),
-        linear-gradient(135deg,#111,#444,#ddd);
-      display:flex;
-      align-items:flex-end;
-      padding:22px;
-      color:white;
-      font-size:28px;
-      font-weight:900;
-      letter-spacing:-1px;
-    }
-
-    .projectBody{padding:24px}
-    .projectBody p{color:var(--muted);margin-top:8px}
-
-    .about{
-      background:#111;
-      color:#fff;
-      border-radius:34px;
-      padding:44px;
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:26px;
-      align-items:center;
-    }
-
-    .about p{color:#cfd2d9;font-size:18px}
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:24px;
-    }
-
-    .stat{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      padding:18px;
-    }
-
-    .stat strong{font-size:28px;display:block}
-    .stat span{color:#cfd2d9;font-size:14px}
-
-    .contactBox{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:30px;
-      padding:36px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      align-items:center;
-      box-shadow:var(--shadow);
-    }
-
-    .contactList{
-      display:grid;
-      gap:12px;
-    }
-
-    .contactItem{
-      background:var(--soft);
-      border-radius:18px;
-      padding:16px 18px;
-      font-weight:800;
-    }
-
-    footer{
-      padding:34px 0;
-      color:#777;
-      text-align:center;
-      font-size:14px;
-    }
-
-    @media(max-width:850px){
-      .navlinks{display:none}
-      .heroGrid,.about,.contactBox{grid-template-columns:1fr}
-      .cards,.projects{grid-template-columns:1fr}
-      .hero{padding-top:58px}
-      h1{letter-spacing:-2px}
-      .about{padding:28px}
-    }
+    body{font-family:Inter,Arial,sans-serif;background:#fff;color:var(--text);line-height:1.65;overflow-x:hidden}
+    a{text-decoration:none;color:inherit} img{max-width:100%;display:block}.wrap{width:min(1200px,92%);margin:auto}
+    .topline{height:6px;background:linear-gradient(90deg,var(--green),var(--yellow),var(--black),var(--green))}
+    header{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.brandLogo{width:48px;height:48px;border-radius:16px;object-fit:cover;border:2px solid #fff;box-shadow:0 12px 30px rgba(0,0,0,.13)}
+    .brand small{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-top:-3px}.navlinks{display:flex;align-items:center;gap:22px;font-weight:800;font-size:14px}.navlinks a:hover{color:var(--green)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 22px;border-radius:999px;border:1px solid var(--black);font-weight:900;cursor:pointer;transition:.22s;background:#fff}.btn:hover{transform:translateY(-2px);box-shadow:0 15px 30px rgba(0,0,0,.12)}.btn.dark{background:var(--black);color:#fff}.btn.green{background:var(--green);border-color:var(--green);color:#fff}.btn.yellow{background:var(--yellow);border-color:var(--yellow);color:#111}.btn.ghost{border-color:var(--line);background:#fff}
+    .hero{position:relative;padding:82px 0 55px;background:radial-gradient(circle at 12% 10%,rgba(255,210,31,.23),transparent 32%),radial-gradient(circle at 90% 15%,rgba(18,155,79,.14),transparent 31%),#fff}.heroGrid{display:grid;grid-template-columns:1.06fr .94fr;gap:42px;align-items:center}.badge{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:#fff;font-weight:900;color:#1e293b;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+    h1{font-size:clamp(42px,6vw,82px);line-height:.98;letter-spacing:-3.5px;margin:20px 0}.grad{background:linear-gradient(90deg,var(--green),var(--yellow2),var(--black));-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:19px;color:var(--muted);max-width:690px;margin-bottom:28px}.actions{display:flex;gap:12px;flex-wrap:wrap}.miniStats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}.mini{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff}.mini strong{font-size:25px;display:block}.mini span{font-size:12px;color:var(--muted);font-weight:800}
+    .profileCard{position:relative;border:1px solid var(--line);border-radius:38px;padding:24px;background:linear-gradient(180deg,#fff,#fffdf1);box-shadow:var(--shadow);overflow:hidden}.profileCard:before{content:"";position:absolute;inset:auto -50px -60px auto;width:220px;height:220px;border-radius:50%;background:rgba(255,210,31,.45)}.profilePhoto{width:260px;height:260px;margin:10px auto 18px;border-radius:50%;object-fit:cover;border:8px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.18)}.cardName{text-align:center}.cardName h2{font-size:32px;letter-spacing:-1.2px}.cardName p{color:var(--muted);font-weight:700}.pillRow{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}.pill{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:900}.pill.green{background:rgba(18,155,79,.10);color:var(--green)}.pill.yellow{background:rgba(255,210,31,.22)}
+    section{padding:68px 0}.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:26px;margin-bottom:28px}.sectionHead h2{font-size:clamp(31px,4vw,50px);line-height:1.05;letter-spacing:-1.9px}.sectionHead p{max-width:540px;color:var(--muted);font-weight:600}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff;box-shadow:0 10px 34px rgba(0,0,0,.04);transition:.22s}.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.icon{width:54px;height:54px;border-radius:18px;background:var(--black);color:#fff;display:grid;place-items:center;font-size:25px;margin-bottom:18px}.card h3{font-size:22px;margin-bottom:9px}.card p,.card li{color:var(--muted)}.card ul{padding-left:19px;margin-top:12px}.band{background:linear-gradient(135deg,var(--black),#122018);color:#fff;border-radius:38px;padding:42px;overflow:hidden;position:relative}.band:after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:rgba(255,210,31,.22)}.band p{color:#d6dbe0}.band .grid3 .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.13);box-shadow:none}.band .card h3{color:#fff}.band .card p,.band .card li{color:#dce2e7}.novaLogo{width:78px;height:78px;border-radius:22px;object-fit:cover;background:#fff;padding:6px;margin-bottom:14px}.storeBtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.storeBtn{background:#111;color:#fff;border-radius:16px;padding:12px 16px;min-width:178px;border:1px solid rgba(255,255,255,.18);cursor:pointer;font-weight:900}.storeBtn small{display:block;color:#d2d2d2;font-size:11px}.projectTop{height:170px;border-radius:24px;background:linear-gradient(135deg,var(--green),var(--yellow));display:flex;align-items:flex-end;padding:22px;font-size:30px;font-weight:1000;letter-spacing:-1.3px;color:#111;margin-bottom:18px}.projectTop.black{background:linear-gradient(135deg,#0c0c0c,#2e2e2e);color:#fff}.projectTop.web{background:linear-gradient(135deg,#fff6bf,#e9fff1);border:1px solid var(--line)}
+    .pricing .card{position:relative;overflow:hidden}.price{font-size:30px;font-weight:1000;margin:10px 0}.tag{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(18,155,79,.10);color:var(--green);font-size:12px;font-weight:1000}.contactBox{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:start;border:1px solid var(--line);border-radius:36px;padding:34px;background:linear-gradient(180deg,#fff,#fffdf2);box-shadow:var(--shadow)}.contactList{display:grid;gap:12px}.contactItem{padding:15px 17px;border:1px solid var(--line);border-radius:18px;background:#fff;font-weight:900}.form{display:grid;gap:12px}.form input,.form textarea,.form select{width:100%;border:1px solid var(--line);border-radius:16px;padding:15px 16px;font:inherit;background:#fff;outline:none}.form textarea{min-height:142px;resize:vertical}.form input:focus,.form textarea:focus,.form select:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(18,155,79,.12)}.success,.error{display:none;padding:12px 14px;border-radius:14px;font-weight:800}.success{background:#e8fff1;color:#087a3b}.error{background:#fff1f1;color:#b42318}
+    .floatWhats{position:fixed;right:18px;bottom:18px;z-index:80;width:58px;height:58px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:27px;box-shadow:0 18px 35px rgba(18,155,79,.35);border:3px solid #fff}.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}.modal.active{display:flex}.modalBox{width:min(460px,94vw);background:#fff;border-radius:28px;padding:28px;text-align:center;box-shadow:var(--shadow)}.modalBox h3{font-size:28px;margin-bottom:8px}.modalBox p{color:var(--muted);margin-bottom:18px}footer{padding:36px 0;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-weight:700}.mobileMenu{display:none}
+    @media(max-width:900px){.navlinks{display:none}.mobileMenu{display:inline-flex}.heroGrid,.grid2,.contactBox{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.sectionHead{display:block}.sectionHead p{margin-top:10px}.miniStats{grid-template-columns:1fr}.profilePhoto{width:220px;height:220px}h1{letter-spacing:-2px}.band{padding:26px}.nav{height:70px}.brand span{font-size:14px}}
   </style>
 </head>
-
 <body>
+  <div class="topline"></div>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#">
-        <div class="logo">KA</div>
-        <div>
-          Kaan Ayaz
-          <div style="font-size:12px;color:#777;font-weight:700;letter-spacing:0">Web Developer</div>
-        </div>
+      <a class="brand" href="#anasayfa">
+        <img class="brandLogo" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" alt="Kaan Ayaz Logo">
+        <span>Kaan Ayaz<small>Web & Mobil Developer</small></span>
       </a>
-
       <nav class="navlinks">
-        <a href="#hizmetler">Hizmetler</a>
-        <a href="#projeler">Projeler</a>
-        <a href="#hakkimda">Hakkımda</a>
-        <a href="#iletisim">İletişim</a>
+        <a href="#hizmetler">Hizmetler</a><a href="#nova">NOVA</a><a href="#projeler">Projeler</a><a href="#paketler">Paketler</a><a href="#iletisim">İletişim</a>
       </nav>
-
-      <a class="btn dark" href="#iletisim">Teklif Al</a>
+      <a class="btn green" href="#iletisim">Teklif Al</a>
     </div>
   </header>
 
-  <main>
+  <main id="anasayfa">
     <section class="hero">
       <div class="wrap heroGrid">
         <div>
-          <div class="badge">🚀 Freelance Web & Mobile Developer</div>
-          <h1>Markana modern, hızlı ve güçlü bir dijital görünüm kazandır.</h1>
-          <p>
-            Ben Kaan Ayaz. İşletmeler, kişisel markalar ve projeler için mobil uyumlu,
-            hızlı, şık ve kullanışlı web sayfaları hazırlıyorum.
-          </p>
-          <div class="actions">
-            <a class="btn dark" href="#projeler">Projeleri Gör</a>
-            <a class="btn light" href="#iletisim">İletişime Geç</a>
-          </div>
+          <div class="badge">🇧🇷 Yeşil • Sarı • Beyaz • Siyah profesyonel arayüz</div>
+          <h1>Markanı dijitalde <span class="grad">güçlü, hızlı ve akılda kalıcı</span> hale getiriyorum.</h1>
+          <p class="lead">Ben Kaan Ayaz. Web siteleri, mobil uygulama arayüzleri, yönetim panelleri, e-ticaret sistemleri ve işletmelere özel dijital çözümler geliştiriyorum. Amacım sadece güzel görünen değil; hızlı çalışan, güven veren ve müşteriye dönüşen sistemler kurmak.</p>
+          <div class="actions"><a class="btn dark" href="#projeler">Projeleri İncele</a><a class="btn yellow" href="tel:05458104901">0545 810 49 01</a><a class="btn ghost" href="mailto:kaanayazstudio@gmail.com">Mail Gönder</a></div>
+          <div class="miniStats"><div class="mini"><strong>Web</strong><span>Kurumsal ve kişisel site</span></div><div class="mini"><strong>Mobil</strong><span>Flutter arayüz ve uygulama</span></div><div class="mini"><strong>Panel</strong><span>Yönetilebilir sistem</span></div></div>
         </div>
-
-        <div class="panel">
-          <div class="screenTop">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-          <div class="codebox">
-            <div><span>const</span> developer = "Kaan Ayaz";</div><br>
-            <div><span>services</span> = [</div>
-            <div>&nbsp;&nbsp;"Web Tasarım",</div>
-            <div>&nbsp;&nbsp;"Mobil Uyumlu Site",</div>
-            <div>&nbsp;&nbsp;"Admin Panel",</div>
-            <div>&nbsp;&nbsp;"Portföy Sayfası"</div>
-            <div>];</div><br>
-            <div class="gray">// Temiz kod, modern tasarım</div>
-            <div><span>status</span> = "Hazır";</div>
-          </div>
+        <div class="profileCard">
+          <img class="profilePhoto" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" alt="Kaan Ayaz">
+          <div class="cardName"><h2>Kaan Ayaz</h2><p>Freelance Web & Mobile Developer</p></div>
+          <div class="pillRow"><span class="pill green">Flutter</span><span class="pill yellow">Firebase</span><span class="pill">HTML/CSS/JS</span><span class="pill">SEO</span><span class="pill">Admin Panel</span></div>
         </div>
       </div>
     </section>
 
-    <section id="hizmetler">
-      <div class="wrap">
-        <div class="sectionTitle">
-          <h2>Hizmetler</h2>
-          <p>İhtiyacına göre sade tanıtım sayfasından gelişmiş yönetim panelli sisteme kadar çözüm üretiyorum.</p>
-        </div>
+    <section id="hizmetler"><div class="wrap"><div class="sectionHead"><h2>Hizmetlerim</h2><p>İşletmeler, bireysel markalar ve girişimler için uçtan uca dijital çözüm hazırlıyorum.</p></div><div class="grid3">
+      <div class="card"><div class="icon">💻</div><h3>Profesyonel Web Sitesi</h3><p>Mobil uyumlu, hızlı açılan, modern tasarımlı, Google uyumlu kurumsal siteler.</p><ul><li>Tek sayfa veya çok sayfa</li><li>SEO başlangıç ayarları</li><li>WhatsApp ve form entegrasyonu</li></ul></div>
+      <div class="card"><div class="icon">📱</div><h3>Mobil Uygulama Arayüzü</h3><p>Flutter ile Android/iOS uyumlu, temiz ve modern mobil uygulama ekranları.</p><ul><li>Firebase altyapısı</li><li>Giriş, profil, mesaj, ilan sistemleri</li><li>Performans odaklı yapı</li></ul></div>
+      <div class="card"><div class="icon">⚙️</div><h3>Yönetim Paneli</h3><p>İçerik, ürün, haber, ilan, müşteri ve sipariş yönetimi için özel panel.</p><ul><li>Admin giriş sistemi</li><li>Veri yönetimi</li><li>Güvenli yetkilendirme</li></ul></div>
+      <div class="card"><div class="icon">🛒</div><h3>E-Ticaret</h3><p>Ürün listeleme, sepet, sipariş ve ödeme altyapısına hazır satış sistemleri.</p><ul><li>Kategori ve ürün sayfaları</li><li>WhatsApp sipariş</li><li>Ödeme entegrasyonuna hazır</li></ul></div>
+      <div class="card"><div class="icon">🚀</div><h3>Performans & Optimizasyon</h3><p>Sayfa açılış hızı, görsel optimizasyonu, mobil deneyim ve akıcı kullanım.</p><ul><li>Hızlı yükleme</li><li>Temiz kod yapısı</li><li>Kullanıcı deneyimi</li></ul></div>
+      <div class="card"><div class="icon">🎯</div><h3>Marka Odaklı Tasarım</h3><p>Renk, yazı, buton, ikon ve düzeni markanın ruhuna uygun hale getiriyorum.</p><ul><li>Profesyonel görünüm</li><li>Güven veren tasarım</li><li>Modern vitrin etkisi</li></ul></div>
+    </div></div></section>
 
-        <div class="cards">
-          <div class="card">
-            <div class="icon">💻</div>
-            <h3>Web Site Tasarımı</h3>
-            <p>Modern, hızlı, mobil uyumlu ve profesyonel web siteleri.</p>
-          </div>
-          <div class="card">
-            <div class="icon">📱</div>
-            <h3>Mobil Uyum</h3>
-            <p>Telefon, tablet ve bilgisayarda düzgün çalışan responsive yapı.</p>
-          </div>
-          <div class="card">
-            <div class="icon">⚙️</div>
-            <h3>Yönetim Paneli</h3>
-            <p>İçerikleri kolayca güncelleyebileceğin özel admin panel sistemleri.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="nova"><div class="wrap"><div class="band"><div class="sectionHead"><div><img class="novaLogo" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" alt="NOVA Logo"><h2>NOVA Sosyal Otomotiv Platformu</h2></div><p>NOVA; araç tutkunları, servisler, çekiciler, ilan sahipleri ve otomotiv dünyasını tek uygulamada buluşturmayı hedefleyen mobil platform projemdir.</p></div><div class="grid3">
+        <div class="card"><h3>🚗 Otomotiv Sosyal Akış</h3><p>Kullanıcılar araç paylaşımları yapabilir, beğeni, yorum, kaydetme ve profil etkileşimleriyle sosyal deneyim yaşayabilir.</p></div>
+        <div class="card"><h3>🧭 Harita & Yakındaki Servisler</h3><p>Kullanıcıya yakın işletmeler, servisler, akaryakıt noktaları ve rota deneyimi için harita odaklı yapı planlanmıştır.</p></div>
+        <div class="card"><h3>💬 Mesajlaşma</h3><p>Kullanıcılar ilan, profil ve paylaşımlar üzerinden iletişime geçebilir. DM sistemi mobil uygulama içinde özel olarak tasarlanmıştır.</p></div>
+        <div class="card"><h3>📢 İlan Sistemleri</h3><p>2. el araç ilanları, çekici ilanları, işletme kartları ve kategorili listeleme sistemleriyle zengin içerik yapısı.</p></div>
+        <div class="card"><h3>📰 Haber & Etkinlik</h3><p>Otomotiv haberleri, etkinlik duyuruları, yakıt fiyatları ve topluluk odaklı içerikler için özel ekranlar.</p></div>
+        <div class="card"><h3>🔥 Yakında Yayında</h3><p>NOVA mobil uygulaması Play Store ve App Store için yayın hazırlığındadır. Butonlara tıklayınca bilgilendirme penceresi açılır.</p><div class="storeBtns"><button class="storeBtn" onclick="openSoon('Play Store')">▶ Play Store<small>Yakında aktif olacak</small></button><button class="storeBtn" onclick="openSoon('App Store')"> App Store<small>Yakında aktif olacak</small></button></div></div>
+      </div></div></div></section>
 
-    <section id="projeler">
-      <div class="wrap">
-        <div class="sectionTitle">
-          <h2>Projeler</h2>
-          <p>Aktif geliştirdiğim ve hazırladığım web / mobil tabanlı örnek çalışmalar.</p>
-        </div>
+    <section id="projeler"><div class="wrap"><div class="sectionHead"><h2>Projelerim ve İşlerim</h2><p>Web, mobil ve işletme odaklı geliştirdiğim örnek proje türleri.</p></div><div class="grid2">
+      <div class="card"><div class="projectTop">NOVA</div><h3>NOVA Mobil Uygulama</h3><p>Flutter, Firebase, Firestore, Storage, Messaging ve Google servisleriyle geliştirilen kapsamlı otomotiv sosyal platformu.</p></div>
+      <div class="card"><div class="projectTop web">Modanta Çanta</div><h3>E-Ticaret ve Ürün Vitrini</h3><p>Çanta markası için ürün, kategori, sepet, WhatsApp sipariş ve ödeme sistemine hazır web deneyimi.</p></div>
+      <div class="card"><div class="projectTop black">Yapıcılar Oto</div><h3>Servis ve Müşteri Takip Sistemi</h3><p>Oto servis işletmesi için müşteri, araç, işlem, teslim ve değişen parça takibi odaklı yönetilebilir sistem.</p></div>
+      <div class="card"><div class="projectTop web">Şen İletişim</div><h3>Kurumsal Tanıtım Sitesi</h3><p>Telefon aksesuarı, fatura ödeme ve işletme tanıtımı için mobil uyumlu, sade ve profesyonel web sayfası.</p></div>
+    </div></div></section>
 
-        <div class="projects">
-          <div class="project">
-            <div class="projectImg">NOVA</div>
-            <div class="projectBody">
-              <h3>NOVA Sosyal Otomotiv Platformu</h3>
-              <p>Flutter ve Firebase altyapısı ile geliştirilen sosyal otomotiv uygulaması.</p>
-            </div>
-          </div>
+    <section id="paketler"><div class="wrap pricing"><div class="sectionHead"><h2>Çalışma Paketleri</h2><p>Her proje farklıdır. Aşağıdaki paketler fikir vermesi için hazırlandı; net teklif ihtiyaçlara göre belirlenir.</p></div><div class="grid3">
+      <div class="card"><span class="tag">Başlangıç</span><h3>Tanıtım Sitesi</h3><div class="price">Hızlı Vitrin</div><p>Kişisel marka veya küçük işletme için modern tek sayfa web sitesi.</p><ul><li>Mobil uyumlu tasarım</li><li>İletişim formu</li><li>WhatsApp butonu</li><li>Temel SEO</li></ul></div>
+      <div class="card"><span class="tag">Popüler</span><h3>Kurumsal Site</h3><div class="price">Profesyonel</div><p>Hizmetler, projeler, hakkımızda, iletişim ve detaylı içerik yapısına sahip site.</p><ul><li>Çok bölümlü yapı</li><li>Formspree form</li><li>Google uyumlu meta</li><li>Hız optimizasyonu</li></ul></div>
+      <div class="card"><span class="tag">Gelişmiş</span><h3>Panel / Uygulama</h3><div class="price">Özel Sistem</div><p>İlan, ürün, müşteri, haber, içerik ve kullanıcı yönetimi gereken projeler.</p><ul><li>Admin panel</li><li>Firebase / veritabanı</li><li>Mobil uygulama ekranları</li><li>Proje odaklı geliştirme</li></ul></div>
+    </div></div></section>
 
-          <div class="project">
-            <div class="projectImg">WEB</div>
-            <div class="projectBody">
-              <h3>Freelance Web Projeleri</h3>
-              <p>İşletmeler için tanıtım, iletişim, portföy ve müşteri odaklı web sayfaları.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="hakkimda">
-      <div class="wrap">
-        <div class="about">
-          <div>
-            <h2>Kaan Ayaz Developer</h2>
-          </div>
-          <div>
-            <p>
-              Web ve mobil uygulama geliştirme alanında sade, hızlı ve kullanışlı çözümler üretiyorum.
-              Amacım; projeleri sadece güzel göstermek değil, aynı zamanda kullanıcıya kolay ve güvenli bir deneyim sunmak.
-            </p>
-
-            <div class="stats">
-              <div class="stat"><strong>100%</strong><span>Mobil Uyum</span></div>
-              <div class="stat"><strong>7/24</strong><span>Online Görünüm</span></div>
-              <div class="stat"><strong>Modern</strong><span>Tasarım</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="iletisim">
-      <div class="wrap">
-        <div class="contactBox">
-          <div>
-            <h2>Projen için iletişime geç.</h2>
-            <p style="color:#666;margin-top:12px">
-              Web sitesi, portföy, işletme tanıtım sayfası veya yönetim panelli sistem için bana ulaşabilirsin.
-            </p>
-          </div>
-
-          <div class="contactList">
-            <a class="contactItem" href="mailto:volkanilgin762534@gmail.com">📩 volkanilgin762534@gmail.com</a>
-            <a class="contactItem" href="https://github.com/kaanayazz" target="_blank" rel="noopener">🐙 GitHub / kaanayazz</a>
-            <a class="contactItem" href="https://kaanayaz.com.tr" target="_blank" rel="noopener">🌐 kaanayaz.com.tr</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="iletisim"><div class="wrap"><div class="contactBox"><div><h2>Projen için konuşalım.</h2><p class="lead" style="font-size:16px;margin-top:12px">Web sitesi, mobil uygulama, yönetim paneli veya NOVA benzeri kapsamlı dijital proje için bana ulaşabilirsin.</p><div class="contactList"><a class="contactItem" href="tel:05458104901">📞 0545 810 49 01</a><a class="contactItem" href="mailto:kaanayazstudio@gmail.com">📩 kaanayazstudio@gmail.com</a><a class="contactItem" href="https://wa.me/905458104901" target="_blank" rel="noopener">💬 WhatsApp ile Yaz</a><a class="contactItem" href="https://github.com/kaanayazz" target="_blank" rel="noopener">🐙 GitHub / kaanayazz</a></div></div>
+      <form class="form" action="https://formspree.io/f/mkokkwen" method="POST">
+        <div class="success" id="successMsg">Mesajın gönderildi. En kısa sürede dönüş yapacağım.</div><div class="error" id="errorMsg">Mesaj gönderilemedi. Lütfen tekrar dene.</div>
+        <input type="text" name="name" placeholder="Ad Soyad" required>
+        <input type="email" name="email" placeholder="E-posta adresin" required>
+        <input type="tel" name="phone" placeholder="Telefon numaran">
+        <select name="service" required><option value="">Hangi hizmet?</option><option>Web sitesi</option><option>Mobil uygulama</option><option>Yönetim paneli</option><option>E-ticaret</option><option>Diğer</option></select>
+        <textarea name="message" placeholder="Projeni kısaca anlat..." required></textarea>
+        <input type="hidden" name="_subject" value="KaanAyaz.com.tr Yeni İletişim Formu">
+        <button class="btn green" type="submit">Mesaj Gönder</button>
+      </form>
+    </div></div></section>
   </main>
-
-  <footer>
-    © 2026 Kaan Ayaz Web Developer. Tüm hakları saklıdır.
-  </footer>
+  <a class="floatWhats" href="https://wa.me/905458104901" target="_blank" rel="noopener" aria-label="WhatsApp">☏</a>
+  <div class="modal" id="soonModal"><div class="modalBox"><h3 id="modalTitle">Yakında Aktif</h3><p>NOVA uygulaması mağaza yayın süreci tamamlandığında bu buton aktif olacaktır.</p><button class="btn green" onclick="closeSoon()">Tamam</button></div></div>
+  <footer><div class="wrap">© 2026 Kaan Ayaz Web & Mobil Developer. Tüm hakları saklıdır. | kaanayaz.com.tr</div></footer>
+  <script>
+    function openSoon(store){document.getElementById('modalTitle').textContent=store+' yakında aktif olacak';document.getElementById('soonModal').classList.add('active')}
+    function closeSoon(){document.getElementById('soonModal').classList.remove('active')}
+    document.getElementById('soonModal').addEventListener('click',function(e){if(e.target===this)closeSoon()});
+    const form=document.querySelector('.form');
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();
+      const data=new FormData(form); const success=document.getElementById('successMsg'); const error=document.getElementById('errorMsg');
+      success.style.display='none'; error.style.display='none';
+      try{const res=await fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}}); if(res.ok){form.reset();success.style.display='block'}else{error.style.display='block'}}catch(err){error.style.display='block'}
+    });
+  </script>
 </body>
 </html>
