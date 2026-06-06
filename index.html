@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaan Ayaz | Web Tasarım ve Kurumsal Site Hizmetleri</title>
+  <title>Kaan Ayaz Studio | Web Tasarım ve Yazılım Hizmetleri</title>
   <!-- Düzenleme: mevcut sayfa yapısı korunarak web hizmetleri, mobil app fiyatları ve NOVA logosu düzenlendi -->
-  <meta name="description" content="Kaan Ayaz Web Developer - Kurumsal web sitesi, bireysel web sitesi, çoklu iş kolu web sayfaları, yönetim paneli ve mobil uygulama geliştirme paketleri." />
+  <meta name="description" content="Kaan Ayaz Studio - Kurumsal web sitesi, bireysel web sitesi, çoklu iş kolu web sayfaları, yönetim paneli ve mobil uygulama geliştirme paketleri." />
   <meta name="keywords" content="Kaan Ayaz, web developer, mobil uygulama, web tasarım, NOVA, Eskişehir web tasarım" />
   <meta name="author" content="Kaan Ayaz" />
   <meta name="theme-color" content="#ffffff" />
-  <meta property="og:title" content="Kaan Ayaz | Web Tasarım ve Kurumsal Site Hizmetleri" />
+  <meta property="og:title" content="Kaan Ayaz Studio | Web Tasarım ve Yazılım Hizmetleri" />
   <meta property="og:description" content="Modern, hızlı, mobil uyumlu kurumsal web siteleri, bireysel web sayfaları ve çoklu iş kolu dijital çözümleri." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kaanayaz.com.tr" />
@@ -86,8 +86,8 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#anasayfa">
-        <img class="brandLogo" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" alt="Kaan Ayaz Logo">
-        <span>Geliş & Parılda <small>Hoşgeldiniz</small></span>
+        <img class="brandLogo" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" alt="Kaan Ayaz Studio Logo">
+        <span>Kaan Ayaz Studio <small>Web & Mobile Solutions</small></span>
       </a>
       <nav class="navlinks">
         <a href="#paketler">Fiyatlar</a><a href="#nova">NOVA</a><a href="#iletisim">İletişim</a>
@@ -100,7 +100,7 @@
       <div class="wrap heroGrid">
         <div class="profileCard"><div class="profileInner">
           <img class="profilePhoto" src="https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/posts%2FERpWTBp6HWa1mWoi35ZygJm3bDe2%2F7Nw8X3FVFB6Lts21XKHH%2F1780508852766_0.jpg?alt=media&token=c51dea6c-bbb2-4ae1-973f-68eb5b3afcc4" alt="Kaan Ayaz">
-          <div class="cardName"><h2>Kaan Ayaz</h2><p>Freelance Web & Mobile Developer</p></div>
+          <div class="cardName"><h2>Kaan Ayaz</h2><p>Web & Mobile Developer</p></div>
           <div class="programStrip" aria-label="Kullanılan yazılım programları">
             <span class="programChip green">Android Studio</span>
             <span class="programChip yellow">Xcode</span>
@@ -110,7 +110,7 @@
           </div>
         </div></div>
         <div>
-          <h1>Markanızı dijitalde güçlü gösteren <span class="grad">kurumsal çözümlerr</span></h1>
+          <h1>Markanızı dijitalde güçlü gösteren <span class="grad">kurumsal çözümler</span></h1>
           <p class="lead">Kurumsal siteler, bireysel sayfalar ve çoklu iş kolu tanıtımları için sade, hızlı ve güven veren dijital çözümler hazırlanır.</p>
           <div class="actions"><a class="btn yellow" href="#iletisim">Proje Teklifi Al</a><a class="btn ghost" href="#paketler">Paketleri İncele</a></div>
           <div class="quickPanel"><div class="quickItem"><strong>Web</strong><span>Kurumsal ve bireysel site</span></div><div class="quickItem"><strong>Çoklu İş</strong><span>Birden fazla hizmet kolu</span></div><div class="quickItem"><strong>Panel</strong><span>Yönetilebilir sistem</span></div></div>
@@ -167,7 +167,7 @@
       hero:{
         title:"Markanızı dijitalde güçlü gösteren kurumsal çözümler",
         lead:"Kurumsal siteler, bireysel sayfalar ve çoklu iş kolu tanıtımları için sade, hızlı ve güven veren dijital çözümler hazırlanır.",
-        subtitle:"Freelance Web & Mobile Developer",
+        subtitle:"Web & Mobile Developer",
         tools:["Android Studio","Xcode","Flutter","GitHub","C++"]
       },
       headings:{web:"Web sitesi fiyatları",mobile:"Mobil app fiyatları"},
@@ -308,6 +308,86 @@
         button.textContent='Mesaj Gönder';
       }
     });
+
+
+    /* Kaan Ayaz Studio - Ana site trafik ve hareket takibi */
+    (function initKaanAyazStudioTracker(){
+      if(!window.firebase || !window.kaanAyazDb || !firebase.firestore) return;
+      const db = window.kaanAyazDb;
+      const sessionKey = 'kaanayaz_studio_session_id';
+      let sessionId = localStorage.getItem(sessionKey);
+      if(!sessionId){
+        sessionId = 's_' + Date.now() + '_' + Math.random().toString(36).slice(2,10);
+        localStorage.setItem(sessionKey, sessionId);
+      }
+      function deviceType(){
+        const ua = navigator.userAgent.toLowerCase();
+        if(/ipad|tablet/.test(ua)) return 'Tablet';
+        if(/mobi|android|iphone/.test(ua)) return 'Mobil';
+        return 'Bilgisayar';
+      }
+      function browserName(){
+        const ua = navigator.userAgent;
+        if(ua.includes('Edg')) return 'Edge';
+        if(ua.includes('OPR')) return 'Opera';
+        if(ua.includes('Chrome')) return 'Chrome';
+        if(ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
+        if(ua.includes('Firefox')) return 'Firefox';
+        return 'Bilinmiyor';
+      }
+      function baseData(){
+        return {
+          sessionId,
+          site:'kaanayaz.com.tr',
+          path:location.pathname || '/',
+          url:location.href,
+          referrer:document.referrer || '',
+          device:deviceType(),
+          browser:browserName(),
+          platform:navigator.platform || '',
+          language:navigator.language || '',
+          screen:{w:screen.width,h:screen.height},
+          createdAt:firebase.firestore.FieldValue.serverTimestamp()
+        };
+      }
+      function sendEvent(type, extra){
+        db.collection('website_events').add(Object.assign(baseData(), {type}, extra || {})).catch(()=>{});
+      }
+      db.collection('website_visits').add(baseData()).catch(()=>{});
+      document.addEventListener('click', function(e){
+        const target = e.target.closest('a,button,.btn,.storeBtn');
+        if(!target) return;
+        sendEvent('click', {
+          label:(target.innerText || target.getAttribute('aria-label') || target.href || target.className || 'Tıklama').replace(/\s+/g,' ').trim().slice(0,120),
+          href:target.href || '',
+          target:target.tagName
+        });
+      }, {passive:true});
+      const seenSections = new Set();
+      const observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(!entry.isIntersecting) return;
+          const el = entry.target;
+          const section = el.id || (el.querySelector('h1,h2,h3') ? el.querySelector('h1,h2,h3').innerText : 'Bölüm');
+          if(seenSections.has(section)) return;
+          seenSections.add(section);
+          sendEvent('section_view', {section:String(section).replace(/\s+/g,' ').trim().slice(0,120)});
+        });
+      }, {threshold:.55});
+      document.querySelectorAll('main section, #anasayfa, #paketler, #nova, #iletisim').forEach(el=>observer.observe(el));
+      let maxScroll = 0;
+      window.addEventListener('scroll', function(){
+        const doc = document.documentElement;
+        const percent = Math.round(((doc.scrollTop || document.body.scrollTop) / Math.max(1, doc.scrollHeight - doc.clientHeight)) * 100);
+        if(percent >= maxScroll + 25){
+          maxScroll = percent;
+          sendEvent('scroll_depth', {percent});
+        }
+      }, {passive:true});
+      window.addEventListener('beforeunload', function(){
+        sendEvent('page_exit', {timeOnPageSeconds:Math.round(performance.now()/1000)});
+      });
+    })();
   </script>
 </body>
 </html>
