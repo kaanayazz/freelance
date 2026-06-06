@@ -32,7 +32,7 @@
     .sidebar{position:sticky;top:90px;height:max-content;background:#fff;border:1px solid var(--line);border-radius:28px;padding:14px;box-shadow:0 10px 28px rgba(0,0,0,.05)}.tabBtn{width:100%;border:0;background:transparent;text-align:left;padding:13px 14px;border-radius:16px;font-weight:900;color:#303640;cursor:pointer;margin-bottom:5px}.tabBtn:hover,.tabBtn.active{background:#101214;color:#fff}.tabBtn.active span,.tabBtn:hover span{color:#fff}.tabBtn span{display:block;font-size:11px;color:var(--muted);font-weight:750;margin-top:2px}
     .content{display:grid;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.045)}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:17px}.head p{margin-top:5px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.stat{border:1px solid var(--line);border-radius:22px;padding:18px;background:linear-gradient(180deg,#fff,#fffdf3)}.stat b{display:block;font-size:30px;letter-spacing:-1.2px}.stat span{color:var(--muted);font-size:12px;font-weight:850}
     label{display:block;font-size:12px;font-weight:950;color:#3d4550;margin-bottom:7px}.field{margin-bottom:13px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:15px;padding:13px 14px;background:#fff;outline:none}textarea{min-height:110px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(18,155,79,.12)}
-    .saveBar{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}.list{display:grid;gap:10px}.row{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff;display:grid;gap:9px}.rowTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(18,155,79,.10);color:var(--green);font-size:12px;font-weight:950}.badge.yellow{background:rgba(255,210,31,.26);color:#111}.badge.black{background:#111;color:#fff}.muted{color:var(--muted);font-size:13px;font-weight:750}.messageText{white-space:pre-wrap;color:#29313a;font-weight:650}.packageBox{border:1px solid var(--line);border-radius:20px;padding:16px;background:#fff}.packageTitle{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.features{display:grid;gap:8px}.featureRow{display:flex;gap:8px}.featureRow input{flex:1}.toolsGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.toast{position:fixed;right:18px;bottom:18px;background:#101214;color:#fff;border-radius:16px;padding:14px 16px;font-weight:850;box-shadow:var(--shadow);display:none;z-index:100}.toast.show{display:block}.empty{padding:18px;border:1px dashed #d8dee8;border-radius:18px;color:var(--muted);font-weight:800;text-align:center}.dangerText{color:var(--danger);font-weight:850}.note{background:#fffdf0;border:1px solid #f3e5a4;border-radius:18px;padding:14px;color:#5b5100;font-weight:800;font-size:13px}
+    .saveBar{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}.list{display:grid;gap:10px}.row{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff;display:grid;gap:9px}.rowTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(18,155,79,.10);color:var(--green);font-size:12px;font-weight:950}.badge.yellow{background:rgba(255,210,31,.26);color:#111}.badge.black{background:#111;color:#fff}.muted{color:var(--muted);font-size:13px;font-weight:750}.messageText{white-space:pre-wrap;color:#29313a;font-weight:650}.packageBox{border:1px solid var(--line);border-radius:20px;padding:16px;background:#fff}.packageTitle{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.features{display:grid;gap:8px}.featureRow{display:flex;gap:8px}.featureRow input{flex:1}.toolsGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.toast{position:fixed;right:18px;bottom:18px;background:#101214;color:#fff;border-radius:16px;padding:14px 16px;font-weight:850;box-shadow:var(--shadow);display:none;z-index:100}.toast.show{display:block}.empty{padding:18px;border:1px dashed #d8dee8;border-radius:18px;color:var(--muted);font-weight:800;text-align:center}.dangerText{color:var(--danger);font-weight:850}.note{background:#fffdf0;border:1px solid #f3e5a4;border-radius:18px;padding:14px;color:#5b5100;font-weight:800;font-size:13px}.codeBox{background:#101214;color:#fff;border-radius:18px;padding:16px;overflow:auto;font:13px/1.55 monospace;white-space:pre-wrap}.okText{color:var(--green);font-weight:900}
     @media(max-width:940px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow-x:auto;border-radius:20px}.tabBtn{min-width:170px}.grid2,.grid3,.toolsGrid{grid-template-columns:1fr}.nav{height:auto;min-height:68px;align-items:flex-start;padding:12px 0;flex-direction:column}.userMini{width:100%;justify-content:space-between}.head{display:block}.head .btn{margin-top:12px}.card{padding:18px;border-radius:20px}}
   </style>
 </head>
@@ -74,6 +74,7 @@
         <button class="tabBtn" data-tab="nova">NOVA Alanı<span>Logo, açıklama, mağaza linkleri</span></button>
         <button class="tabBtn" data-tab="forms">Formlar<span>Gelen müşteri talepleri</span></button>
         <button class="tabBtn" data-tab="seo">SEO & Footer<span>Meta, sosyal görsel, alt yazı</span></button>
+        <button class="tabBtn" data-tab="rules">Firebase Rules<span>Üretim modu güvenlik kuralları</span></button>
       </aside>
 
       <main class="content">
@@ -143,6 +144,37 @@
           <div class="field"><label>Footer Yazısı</label><input id="footerText" type="text"></div>
           <div class="saveBar"><button class="btn green" onclick="saveSeo()">SEO Ayarlarını Kaydet</button></div>
         </section>
+
+        <section id="rules" class="tabContent card hidden">
+          <div class="head"><div><h2>Firebase Rules</h2><p>Firestore üretim modu için bu kuralları Firebase Console → Firestore Database → Rules alanına yapıştır.</p></div></div>
+          <div class="note">Bu kurallarda site içerikleri herkes tarafından okunabilir, yalnızca yetkili Google hesapları yönetebilir. Formu herkes gönderebilir, formları yalnızca yetkili hesaplar görebilir.</div>
+          <div style="height:14px"></div>
+          <pre class="codeBox" id="rulesCode">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          "kaanayazstudio@gmail.com",
+          "volkanilgin762534@gmail.com"
+        ];
+    }
+
+    match /site_admin/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /website_contact_forms/{document=**} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}</pre>
+          <div class="saveBar"><button class="btn green" onclick="copyRules()">Kuralları Kopyala</button></div>
+        </section>
+
       </main>
     </div>
   </section>
@@ -171,7 +203,7 @@
     const allowedAdminEmails = [
       "kaanayazstudio@gmail.com",
       "volkanilgin762534@gmail.com"
-    ];
+    ].map(email => email.toLowerCase());
 
     const defaultSiteData = {
       hero:{
@@ -220,6 +252,12 @@
     const panel = document.getElementById('panel');
     const loginError = document.getElementById('loginError');
 
+    auth.getRedirectResult().catch((err) => {
+      console.error(err);
+      loginError.textContent = 'Google yönlendirme girişi tamamlanamadı. Authorized domains alanını kontrol edin.';
+      loginError.style.display = 'block';
+    });
+
     document.getElementById('googleLoginBtn').addEventListener('click', async () => {
       loginError.style.display = 'none';
       try {
@@ -227,8 +265,12 @@
         provider.setCustomParameters({ prompt: 'select_account' });
         await auth.signInWithPopup(provider);
       } catch (err) {
-        loginError.textContent = 'Google girişi başarısız oldu. Tekrar deneyin.';
+        if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request')) {
+          try { await auth.signInWithRedirect(provider); return; } catch(e) {}
+        }
+        loginError.textContent = 'Google girişi başarısız oldu. Firebase Google giriş ayarlarını ve Authorized domains bölümünü kontrol edin.';
         loginError.style.display = 'block';
+        console.error(err);
       }
     });
 
@@ -276,9 +318,14 @@
     function safe(v){ return (v || '').toString(); }
 
     async function loadAll(){
-      await loadSiteData();
-      await loadForms();
-      toast('Panel güncellendi');
+      try{
+        await loadSiteData();
+        await loadForms();
+        toast('Panel güncellendi');
+      }catch(err){
+        console.error(err);
+        toast('Firebase okuma/yazma izni kontrol edilmeli');
+      }
     }
 
     async function loadSiteData(){
@@ -452,6 +499,16 @@
       await db.collection('website_contact_forms').doc(id).delete();
       toast('Form silindi');
       await loadForms();
+    }
+
+    async function copyRules(){
+      const text = document.getElementById('rulesCode').textContent;
+      try{
+        await navigator.clipboard.writeText(text);
+        toast('Firebase rules kopyalandı');
+      }catch(e){
+        toast('Kuralları elle seçip kopyalayın');
+      }
     }
 
     function escapeHtml(str){ return safe(str).replace(/[&<>'"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m])); }
