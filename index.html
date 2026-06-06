@@ -271,7 +271,14 @@
         applySiteData(defaultSiteData);
       }
     }
-    document.addEventListener('DOMContentLoaded', loadSiteFromFirebase);
+    function startSiteLive(){
+      if(!window.kaanAyazDb){ applySiteData(defaultSiteData); return; }
+      window.kaanAyazDb.collection('site_admin').doc('homepage').onSnapshot(function(snap){
+        if(snap.exists){ applySiteData(snap.data()); }
+        else { loadSiteFromFirebase(); }
+      }, function(){ applySiteData(defaultSiteData); });
+    }
+    document.addEventListener('DOMContentLoaded', startSiteLive);
 
     function openSoon(store){document.getElementById('modalTitle').textContent=store+' yakında aktif olacak';document.getElementById('soonModal').classList.add('active')}
     function closeSoon(){document.getElementById('soonModal').classList.remove('active')}
@@ -290,12 +297,16 @@
         if(!window.kaanAyazDb){throw new Error('Firebase bağlantısı kurulamadı');}
         const payload={
           name:form.name.value.trim(),
+          fullName:form.name.value.trim(),
           email:form.email.value.trim(),
           phone:form.phone.value.trim(),
           service:form.service.value,
           message:form.message.value.trim(),
           status:'new',
+          read:false,
           source:'kaanayaz.com.tr',
+          page:location.href,
+          userAgent:navigator.userAgent,
           createdAt:firebase.firestore.FieldValue.serverTimestamp()
         };
         await window.kaanAyazDb.collection('website_contact_forms').add(payload);
@@ -353,6 +364,15 @@
       function sendEvent(type, extra){
         db.collection('website_events').add(Object.assign(baseData(), {type}, extra || {})).catch(()=>{});
       }
+      function writeSession(){
+        db.collection('website_sessions').doc(sessionId).set(Object.assign(baseData(), {
+          active:true,
+          startedAt:firebase.firestore.FieldValue.serverTimestamp(),
+          lastSeen:firebase.firestore.FieldValue.serverTimestamp()
+        }), {merge:true}).catch(()=>{});
+      }
+      writeSession();
+      setInterval(writeSession, 30000);
       db.collection('website_visits').add(baseData()).catch(()=>{});
       document.addEventListener('click', function(e){
         const target = e.target.closest('a,button,.btn,.storeBtn');
@@ -386,6 +406,7 @@
       }, {passive:true});
       window.addEventListener('beforeunload', function(){
         sendEvent('page_exit', {timeOnPageSeconds:Math.round(performance.now()/1000)});
+        db.collection('website_sessions').doc(sessionId).set({active:false,lastSeen:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(()=>{});
       });
     })();
   </script>
