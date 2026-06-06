@@ -17,7 +17,10 @@
     .layout{display:grid;grid-template-columns:285px 1fr;gap:18px;padding:22px 0 44px}.side{position:sticky;top:96px;height:max-content;background:#fff;border:1px solid var(--line);border-radius:28px;padding:12px;box-shadow:var(--shadow2)}.tab{width:100%;border:0;background:transparent;text-align:left;border-radius:17px;padding:13px 14px;font-weight:950;margin-bottom:6px;color:#25303a}.tab span{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-top:2px}.tab:hover,.tab.active{background:#060606;color:#fff}.tab:hover span,.tab.active span{color:#fff}
     .content{display:grid;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow2)}.head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}.head p{color:var(--muted);font-weight:750;margin-top:5px}.grid4{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.stat{border:1px solid var(--line);border-radius:22px;padding:18px;background:linear-gradient(180deg,#fff,#fffdf1)}.stat b{display:block;font-size:34px;letter-spacing:-1.4px}.stat span{font-size:12px;color:var(--muted);font-weight:900}
     label{display:block;font-size:12px;font-weight:950;margin-bottom:7px;color:#34404b}.field{margin-bottom:13px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;background:#fff;outline:none}textarea{min-height:112px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(18,155,79,.12)}.toolsGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.saveBar{display:flex;gap:10px;flex-wrap:wrap}.packageBox{border:1px solid var(--line);border-radius:22px;padding:16px;background:#fff}.packageBox h3{margin-bottom:10px}.features{display:grid;gap:8px}.list{display:grid;gap:11px}.row{border:1px solid var(--line);border-radius:20px;padding:15px;background:#fff;display:grid;gap:9px}.rowTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(18,155,79,.10);color:var(--green);font-size:12px;font-weight:950}.badge.yellow{background:rgba(255,210,31,.25);color:#111}.badge.black{background:#111;color:#fff}.badge.red{background:#fff0f0;color:var(--danger)}.message{white-space:pre-wrap;color:#26313b;font-weight:650}.empty{padding:18px;border:1px dashed #d3dbe2;border-radius:18px;text-align:center;color:var(--muted);font-weight:850}.note{border:1px solid #f1dd8f;background:#fffbea;border-radius:18px;padding:14px;color:#645300;font-weight:850;font-size:13px;margin-bottom:14px}.toast{position:fixed;right:18px;bottom:18px;background:#080808;color:#fff;border-radius:16px;padding:14px 16px;font-weight:900;box-shadow:var(--shadow);display:none;z-index:50}.toast.show{display:block}.statusBox{display:none;margin-bottom:14px;padding:13px 14px;border-radius:16px;background:#fff4d5;border:1px solid #f1dd8f;color:#6a5400;font-weight:850;line-height:1.35}.statusBox.show{display:block}.miniTable{display:grid;gap:8px}.bar{height:12px;background:#eef3f1;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--yellow));border-radius:999px}.codeBox{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#07120c;color:#d8ffe7;border-radius:18px;padding:16px;white-space:pre-wrap;overflow:auto;font-size:12px;line-height:1.55}
-    @media(max-width:930px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;overflow-x:auto;border-radius:22px}.tab{min-width:178px}.grid2,.grid3,.grid4,.toolsGrid{grid-template-columns:1fr}.head{display:block}.head .btn{margin-top:12px}.nav{align-items:flex-start;flex-direction:column}.user{width:100%;justify-content:space-between}.card{padding:18px;border-radius:22px}.loginBox{padding:24px;border-radius:30px}}
+
+    html,body{width:100%;overflow-x:hidden}a{color:inherit}.brand span,.userText,.row,.message,.muted,.badge,.btn{min-width:0;overflow-wrap:anywhere}.content,.card,.layout,.wrap{min-width:0}.actionGroup{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}.desktopOnly{display:inline-flex}.mobileOnly{display:none}.row.readForm{border-color:rgba(18,155,79,.60);box-shadow:0 0 0 1px rgba(18,155,79,.08),var(--shadow2)}.row.unreadForm{border-color:rgba(226,43,27,.95);box-shadow:0 0 0 3px rgba(226,43,27,.08),var(--shadow2)}.pulseDot{width:9px;height:9px;border-radius:999px;background:var(--green);display:inline-block;margin-right:7px;box-shadow:0 0 0 5px rgba(18,155,79,.12)}.dangerZone{border:1px solid rgba(226,43,27,.18);background:linear-gradient(180deg,#fff,#fff7f6);border-radius:22px;padding:16px}.splitTools{display:grid;grid-template-columns:1fr 1fr;gap:13px}.topHint{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-weight:850;font-size:13px}.softBox{border:1px solid var(--line);border-radius:20px;padding:15px;background:#fbfdfc}.liveBadge{background:rgba(18,155,79,.10);color:var(--green);border:1px solid rgba(18,155,79,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;display:inline-flex;align-items:center}.tableSafe{overflow-x:auto;width:100%}
+
+    @media(max-width:930px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;overflow-x:auto;border-radius:22px}.tab{min-width:178px}.grid2,.grid3,.grid4,.toolsGrid{grid-template-columns:1fr}.head{display:block}.head .btn{margin-top:12px}.nav{align-items:flex-start;flex-direction:column}.user{width:100%;justify-content:space-between}.card{padding:18px;border-radius:22px}.loginBox{padding:24px;border-radius:30px}.desktopOnly{display:none}.mobileOnly{display:inline-flex}.actionGroup{justify-content:flex-start}.splitTools{grid-template-columns:1fr}.rowTop{display:grid;grid-template-columns:1fr;gap:8px}.btn{width:100%;min-height:44px}.btn.small{width:auto}.user{gap:8px}.brand{max-width:100%}.brand small{word-break:break-word}.stat b{font-size:30px}}}
   </style>
 </head>
 <body>
@@ -52,12 +55,13 @@
   <button class="tab" data-tab="forms">Formlar<span>Müşteri talepleri</span></button>
   <button class="tab" data-tab="seo">SEO & Footer<span>Meta bilgiler</span></button>
   <button class="tab" data-tab="tracking">Takip Kodu<span>Ana site bağlantısı</span></button>
+  <button class="tab" data-tab="reset">Sıfırlama<span>İstatistik temizliği</span></button>
 </aside>
 
 <main class="content">
 <div id="panelStatus" class="statusBox"></div>
 <section id="dashboard" class="tabContent card">
-  <div class="head"><div><h2>Canlı Dashboard</h2><p>Site, form, ziyaret ve hareket verileri Firestore’dan canlı okunur.</p></div><button class="btn green" onclick="loadAll()">Yenile</button></div>
+  <div class="head"><div><h2>Canlı Dashboard</h2><p>Site, form, ziyaret ve hareket verileri Firestore’dan canlı okunur.</p><div class="topHint"><span class="liveBadge"><i class="pulseDot"></i>Canlı takip aktif</span><span>Mobil ve masaüstünde taşma engelli yeni panel.</span></div></div><div class="actionGroup"><button class="btn ghost" onclick="resetStatsQuick()">İstatistikleri Sıfırla</button><button class="btn green" onclick="loadAll()">Yenile</button></div></div>
   <div class="grid4">
     <div class="stat"><b id="statVisits">0</b><span>Toplam ziyaret</span></div>
     <div class="stat"><b id="statEvents">0</b><span>Site hareketi</span></div>
@@ -72,13 +76,13 @@
 </section>
 
 <section id="traffic" class="tabContent card hidden">
-  <div class="head"><div><h2>Site Trafiği</h2><p>Ziyaretler, cihaz, ekran ve giriş zamanı kayıtları.</p></div><button class="btn green" onclick="loadVisits()">Trafiği Yenile</button></div>
+  <div class="head"><div><h2>Site Trafiği</h2><p>Ziyaretler, cihaz, ekran ve giriş zamanı kayıtları. Kullanıcı 90 saniye içinde sinyal gönderirse aktif sayılır.</p></div><div class="actionGroup"><button class="btn ghost" onclick="clearCollectionSafe('website_visits','Ziyaret istatistikleri')">Trafiği Sıfırla</button><button class="btn green" onclick="loadVisits()">Trafiği Yenile</button></div></div>
   <div class="grid4"><div class="stat"><b id="todayVisits">0</b><span>Bugünkü ziyaret</span></div><div class="stat"><b id="activeVisits">0</b><span>Aktif ziyaretçi</span></div><div class="stat"><b id="mobileVisits">0</b><span>Mobil cihaz</span></div><div class="stat"><b id="desktopVisits">0</b><span>Bilgisayar</span></div></div>
   <div style="height:18px"></div><h3>Son Ziyaretler</h3><div style="height:10px"></div><div id="visitsList" class="list"></div>
 </section>
 
 <section id="events" class="tabContent card hidden">
-  <div class="head"><div><h2>Sayfa İçi Hareketler</h2><p>Kullanıcıların tıkladığı, okuduğu ve incelediği alanlar.</p></div><button class="btn green" onclick="loadEvents()">Hareketleri Yenile</button></div>
+  <div class="head"><div><h2>Sayfa İçi Hareketler</h2><p>Kullanıcıların tıkladığı, okuduğu ve incelediği alanlar.</p></div><div class="actionGroup"><button class="btn ghost" onclick="clearCollectionSafe('website_events','Hareket istatistikleri')">Hareketleri Sıfırla</button><button class="btn green" onclick="loadEvents()">Hareketleri Yenile</button></div></div>
   <div class="grid2"><div><h3>En Çok Tıklananlar</h3><div style="height:10px"></div><div id="topClicks" class="miniTable"></div></div><div><h3>En Çok Görülen Bölümler</h3><div style="height:10px"></div><div id="topViews" class="miniTable"></div></div></div>
   <div style="height:18px"></div><h3>Son Hareketler</h3><div style="height:10px"></div><div id="eventsList" class="list"></div>
 </section>
@@ -121,7 +125,7 @@
 </section>
 
 <section id="forms" class="tabContent card hidden">
-  <div class="head"><div><h2>Gelen Formlar</h2><p>Web sitesindeki iletişim formundan gelen talepler.</p></div><button class="btn green" onclick="loadForms()">Formları Yenile</button></div>
+  <div class="head"><div><h2>Gelen Formlar</h2><p>Okunmamış formlar kırmızı çerçeve, okunan formlar yeşil çerçeve ile görünür.</p></div><div class="actionGroup"><button class="btn ghost" onclick="markAllFormsRead()">Tümünü Okundu Yap</button><button class="btn green" onclick="loadForms()">Formları Yenile</button></div></div>
   <div id="formsList" class="list"></div>
 </section>
 
@@ -140,6 +144,29 @@
   <div class="note">Ana site bu koleksiyonlara canlı veri gönderir: website_visits, website_events, website_contact_forms. Panel bu verileri canlı okur.</div>
   <div class="codeBox" id="trackingCode"></div>
 </section>
+
+<section id="reset" class="tabContent card hidden">
+  <div class="head"><div><h2>İstatistik Sıfırlama</h2><p>Site verilerini kontrollü temizler. İçerik, fiyatlar, NOVA alanı ve SEO ayarları silinmez.</p></div></div>
+  <div class="grid2">
+    <div class="dangerZone">
+      <h3>Ziyaret ve hareket istatistikleri</h3>
+      <p class="muted" style="margin:8px 0 14px">Toplam ziyaret, aktif/geçmiş ziyaretçi ve tıklama kayıtlarını temizler.</p>
+      <div class="saveBar"><button class="btn danger" onclick="resetStatsQuick()">Ziyaret + Hareket Sıfırla</button></div>
+    </div>
+    <div class="softBox">
+      <h3>Form kontrolü</h3>
+      <p class="muted" style="margin:8px 0 14px">Formları silmeden sadece okundu durumunu günceller.</p>
+      <div class="saveBar"><button class="btn green" onclick="markAllFormsRead()">Tüm Formları Okundu Yap</button></div>
+    </div>
+  </div>
+  <div style="height:13px"></div>
+  <div class="dangerZone">
+    <h3>Tüm form taleplerini sil</h3>
+    <p class="muted" style="margin:8px 0 14px">Bu işlem müşteri taleplerini tamamen kaldırır. Geri alınamaz.</p>
+    <button class="btn danger" onclick="clearCollectionSafe('website_contact_forms','Tüm form talepleri')">Formları Kalıcı Sil</button>
+  </div>
+</section>
+
 </main>
 </div>
 </section>
@@ -186,13 +213,13 @@ async function saveHero(){const tools=[...document.querySelectorAll('.toolInput'
 async function savePackages(type){const update={updatedAt:nowStamp()};if(type==='web'){update.headings={...(siteData.headings||{}),web:$('webHeading').value.trim()};update.webPackages=collectPackages('web')}else{update.headings={...(siteData.headings||{}),mobile:$('mobileHeading').value.trim()};update.mobilePackages=collectPackages('mobile')}await db.collection('site_admin').doc('homepage').set(update,{merge:true});toast(type==='web'?'Web paketleri kaydedildi':'Mobil paketleri kaydedildi');await loadSiteData()}
 async function saveNova(){await db.collection('site_admin').doc('homepage').set({nova:{logo:$('novaLogo').value.trim(),title:$('novaTitle').value.trim(),desc:$('novaDesc').value.trim(),playLogo:$('playLogo').value.trim(),playLink:$('playLink').value.trim(),appLogo:$('appLogo').value.trim(),appLink:$('appLink').value.trim()},updatedAt:nowStamp()},{merge:true});toast('NOVA alanı kaydedildi');await loadSiteData()}
 async function saveSeo(){await db.collection('site_admin').doc('homepage').set({seo:{title:$('seoTitle').value.trim(),desc:$('seoDesc').value.trim(),keywords:$('seoKeywords').value.trim(),image:$('seoImage').value.trim(),footer:$('footerText').value.trim()},updatedAt:nowStamp()},{merge:true});toast('SEO ayarları kaydedildi');await loadSiteData()}
-function toMs(ts){return ts&&ts.toDate?ts.toDate().getTime():0}function fmt(ts){return ts&&ts.toDate?ts.toDate().toLocaleString('tr-TR'):'-'}function today(ts){if(!ts||!ts.toDate)return false;const d=ts.toDate(),n=new Date();return d.toDateString()===n.toDateString()}function active(v){return (Date.now()-toMs(v.lastSeen||v.createdAt))<5*60*1000}
+function toMs(ts){return ts&&ts.toDate?ts.toDate().getTime():0}function fmt(ts){return ts&&ts.toDate?ts.toDate().toLocaleString('tr-TR'):'-'}function today(ts){if(!ts||!ts.toDate)return false;const d=ts.toDate(),n=new Date();return d.toDateString()===n.toDateString()}function active(v){return v.online!==false && (Date.now()-toMs(v.lastSeen||v.createdAt))<90*1000}
 function isActiveSession(s){if(!s.lastSeen||!s.lastSeen.toDate)return false;return Date.now()-s.lastSeen.toDate().getTime()<90000}
 function renderActiveSessions(){if(statActive)statActive.textContent=sessionsCache.filter(isActiveSession).length}
 function renderFormsAll(){$('statForms').textContent=formsCache.length;$('statUnread').textContent=formsCache.filter(f=>!f.read).length;renderForms('formsList',formsCache);renderForms('recentForms',formsCache.slice(0,5),true)}
-function renderForms(id,forms,compact=false){const box=$(id);if(!forms.length){box.innerHTML='<div class="empty">Henüz form talebi yok. Ana siteye takip/form kodu eklenince burada canlı görünecek.</div>';return}box.innerHTML=forms.map(f=>`<div class="row"><div class="rowTop"><div><h3>${esc(f.name||f.fullName||f.adSoyad||'İsimsiz Talep')}</h3><div class="muted">${esc(f.email||'-')}${f.phone?' • '+esc(f.phone):''}</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end"><span class="badge ${f.read?'black':'yellow'}">${f.read?'Okundu':'Yeni'}</span><span class="badge">${esc(f.service||f.subject||'Form')}</span></div></div>${compact?'':`<div class="message">${esc(f.message||f.mesaj||'-')}</div>`}<div class="rowTop"><span class="muted">${fmt(f.createdAt)}</span>${compact?'':`<div style="display:flex;gap:8px"><button class="btn small ghost" onclick="markRead('${f.id}')">Okundu</button><button class="btn small danger" onclick="deleteForm('${f.id}')">Sil</button></div>`}</div></div>`).join('')}
+function renderForms(id,forms,compact=false){const box=$(id);if(!forms.length){box.innerHTML='<div class="empty">Henüz form talebi yok. Ana siteye takip/form kodu eklenince burada canlı görünecek.</div>';return}box.innerHTML=forms.map(f=>`<div class="row ${f.read?'readForm':'unreadForm'}"><div class="rowTop"><div><h3>${esc(f.name||f.fullName||f.adSoyad||'İsimsiz Talep')}</h3><div class="muted">${esc(f.email||'-')}${f.phone?' • '+esc(f.phone):''}</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end"><span class="badge ${f.read?'':'red'}">${f.read?'Okundu':'Okunmamış'}</span><span class="badge">${esc(f.service||f.subject||'Form')}</span></div></div>${compact?'':`<div class="message">${esc(f.message||f.mesaj||'-')}</div>`}<div class="rowTop"><span class="muted">${fmt(f.createdAt)}</span>${compact?'':`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small green" onclick="markRead('${f.id}')">Okundu Yap</button><button class="btn small danger" onclick="deleteForm('${f.id}')">Sil</button></div>`}</div></div>`).join('')}
 async function markRead(id){await db.collection('website_contact_forms').doc(id).set({read:true,status:'read',readAt:nowStamp()},{merge:true});toast('Form okundu')}async function deleteForm(id){if(!confirm('Bu form kaydı silinsin mi?'))return;await db.collection('website_contact_forms').doc(id).delete();toast('Form silindi')}
-function renderVisitsAll(){const act=visitsCache.filter(active).length;$('statVisits').textContent=visitsCache.length;$('statActive').textContent=act;$('todayVisits').textContent=visitsCache.filter(v=>today(v.createdAt)).length;$('activeVisits').textContent=act;$('mobileVisits').textContent=visitsCache.filter(v=>(v.device||'').includes('Mobil')).length;$('desktopVisits').textContent=visitsCache.filter(v=>(v.device||'').includes('Bilgisayar')).length;$('visitsList').innerHTML=visitsCache.length?visitsCache.map(v=>`<div class="row"><div class="rowTop"><div><h3>${esc(v.pageTitle||v.path||'Ziyaret')}</h3><div class="muted">${esc(v.url||'-')}</div></div><span class="badge ${active(v)?'yellow':''}">${active(v)?'Aktif':'Geçmiş'} • ${esc(v.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(v.createdAt)}</span><span class="muted">${esc(v.screen||'')} ${v.language?' • '+esc(v.language):''}</span></div><div class="message">${esc(v.userAgent||'')}</div></div>`).join(''):'<div class="empty">Henüz ziyaret kaydı yok. Takip kodu ana siteye eklenince burada canlı görünür.</div>'}
+function renderVisitsAll(){const act=visitsCache.filter(active).length;$('statVisits').textContent=visitsCache.length;$('statActive').textContent=act;$('todayVisits').textContent=visitsCache.filter(v=>today(v.createdAt)).length;$('activeVisits').textContent=act;$('mobileVisits').textContent=visitsCache.filter(v=>(v.device||'').includes('Mobil')).length;$('desktopVisits').textContent=visitsCache.filter(v=>(v.device||'').includes('Bilgisayar')).length;$('visitsList').innerHTML=visitsCache.length?visitsCache.map(v=>`<div class="row"><div class="rowTop"><div><h3>${esc(v.pageTitle||v.path||'Ziyaret')}</h3><div class="muted">${esc(v.url||'-')}</div></div><span class="badge ${active(v)?'yellow':''}">${active(v)?'Aktif':'Çıkış yaptı'} • ${esc(v.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(v.createdAt)}</span><span class="muted">${esc(v.screen||'')} ${v.language?' • '+esc(v.language):''}</span></div><div class="message">${esc(v.userAgent||'')}</div></div>`).join(''):'<div class="empty">Henüz ziyaret kaydı yok. Takip kodu ana siteye eklenince burada canlı görünür.</div>'}
 function countBy(arr,keyFn){const m={};arr.forEach(x=>{const k=keyFn(x)||'Bilinmeyen';m[k]=(m[k]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])}
 function bars(el,items){if(!items.length){el.innerHTML='<div class="empty">Henüz veri yok.</div>';return}const max=Math.max(...items.map(i=>i[1]),1);el.innerHTML=items.slice(0,8).map(([k,v])=>`<div><div class="rowTop"><b>${esc(k)}</b><span class="badge">${v}</span></div><div class="bar"><i style="width:${Math.max(8,(v/max)*100)}%"></i></div></div>`).join('')}
 function renderEventsAll(){$('statEvents').textContent=eventsCache.length;bars($('topSections'),countBy(eventsCache.filter(e=>e.type==='section_view'),e=>e.section));bars($('topClicks'),countBy(eventsCache.filter(e=>e.type==='click'),e=>e.label||e.text||e.target));bars($('topViews'),countBy(eventsCache.filter(e=>e.type==='section_view'),e=>e.section));$('eventsList').innerHTML=eventsCache.length?eventsCache.map(e=>`<div class="row"><div class="rowTop"><div><h3>${esc(e.type||'Hareket')}</h3><div class="muted">${esc(e.label||e.section||e.path||'-')}</div></div><span class="badge ${e.type==='click'?'yellow':'black'}">${esc(e.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(e.createdAt)}</span><span class="muted">${esc(e.url||'')}</span></div></div>`).join(''):'<div class="empty">Henüz hareket kaydı yok. Kullanıcı tıklamaları takip kodu ile otomatik düşer.</div>'}
@@ -208,7 +235,9 @@ function siteTrackingCode(){return `<script>
   function base(){return{sessionId:sessionId,url:location.href,path:location.pathname,pageTitle:document.title,device:device,userAgent:navigator.userAgent,language:navigator.language,screen:screen.width+'x'+screen.height};}
   function sendEvent(type,data){db.collection('website_events').add(Object.assign(base(),data||{},{type:type,createdAt:stamp()})).catch(function(e){console.warn('event yazılamadı',e);});}
   db.collection('website_visits').doc(sessionId).set(Object.assign(base(),{createdAt:stamp(),lastSeen:stamp(),online:true}),{merge:true}).catch(function(e){console.warn('ziyaret yazılamadı',e);});
-  setInterval(function(){db.collection('website_visits').doc(sessionId).set({lastSeen:stamp(),online:true},{merge:true}).catch(function(){});},30000);
+  setInterval(function(){db.collection('website_visits').doc(sessionId).set({lastSeen:stamp(),online:!document.hidden},{merge:true}).catch(function(){});},20000);
+  document.addEventListener('visibilitychange',function(){db.collection('website_visits').doc(sessionId).set({online:!document.hidden,lastSeen:stamp()},{merge:true}).catch(function(){});});
+  window.addEventListener('pagehide',function(){try{db.collection('website_visits').doc(sessionId).set({online:false,lastSeen:stamp()},{merge:true});}catch(e){}});
   window.addEventListener('beforeunload',function(){try{db.collection('website_visits').doc(sessionId).set({online:false,lastSeen:stamp()},{merge:true});}catch(e){}});
   document.addEventListener('click',function(e){var a=e.target.closest('a,button,[data-track]');if(!a)return;sendEvent('click',{label:(a.innerText||a.getAttribute('aria-label')||a.href||a.id||a.className||'click').toString().replace(/\s+/g,' ').trim().slice(0,120),target:(a.tagName||'').toLowerCase()});});
   var seen={};
@@ -218,8 +247,69 @@ function siteTrackingCode(){return `<script>
 })();
 <\/script>`}
 
+
+async function deleteQueryBatch(q){
+  const snap=await q.get();
+  if(snap.empty)return 0;
+  const batch=db.batch();
+  snap.docs.forEach(doc=>batch.delete(doc.ref));
+  await batch.commit();
+  return snap.size;
+}
+async function clearCollectionSafe(col,label){
+  const ok=confirm(label+' temizlensin mi? Bu işlem geri alınamaz.');
+  if(!ok)return;
+  let total=0;
+  try{
+    while(true){
+      const count=await deleteQueryBatch(db.collection(col).limit(450));
+      total+=count;
+      if(count<450)break;
+    }
+    toast(label+' sıfırlandı');
+    await loadAll();
+  }catch(e){
+    console.error(e);
+    showStatus(label+' sıfırlanamadı. Firestore rules içinde bu koleksiyon için admin delete izni olmalı.');
+  }
+}
+async function resetStatsQuick(){
+  const ok=confirm('Ziyaret ve hareket istatistikleri sıfırlansın mı? Formlar silinmez.');
+  if(!ok)return;
+  try{
+    await clearCollectionNoConfirm('website_visits');
+    await clearCollectionNoConfirm('website_events');
+    toast('İstatistikler sıfırlandı');
+    await loadAll();
+  }catch(e){
+    console.error(e);
+    showStatus('İstatistikler sıfırlanamadı. website_visits ve website_events için admin delete izni gerekli.');
+  }
+}
+async function clearCollectionNoConfirm(col){
+  while(true){
+    const count=await deleteQueryBatch(db.collection(col).limit(450));
+    if(count<450)break;
+  }
+}
+async function markAllFormsRead(){
+  const ok=confirm('Tüm formlar okundu olarak işaretlensin mi?');
+  if(!ok)return;
+  try{
+    const snap=await db.collection('website_contact_forms').limit(450).get();
+    if(snap.empty){toast('Okunacak form yok');return}
+    const batch=db.batch();
+    snap.docs.forEach(doc=>batch.set(doc.ref,{read:true,status:'read',readAt:nowStamp()},{merge:true}));
+    await batch.commit();
+    toast('Tüm formlar okundu yapıldı');
+  }catch(e){
+    console.error(e);
+    showStatus('Formlar okundu yapılamadı. website_contact_forms update izni kontrol edilmeli.');
+  }
+}
+
 window.loadAll=loadAll;window.loadForms=loadForms;window.loadVisits=loadVisits;window.loadEvents=loadEvents;window.loadLoginLogs=loadLoginLogs;
-window.saveHero=saveHero;window.savePackages=savePackages;window.saveNova=saveNova;window.saveSeo=saveSeo;window.markRead=markRead;window.deleteForm=deleteForm;
+window.saveHero=saveHero;window.savePackages=savePackages;window.saveNova=saveNova;window.saveSeo=saveSeo;window.markRead=markRead;window.deleteForm=deleteForm;window.clearCollectionSafe=clearCollectionSafe;window.resetStatsQuick=resetStatsQuick;window.markAllFormsRead=markAllFormsRead;
 </script>
 </body>
 </html>
