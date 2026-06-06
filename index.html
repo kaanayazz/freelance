@@ -87,12 +87,12 @@
     <div class="wrap nav">
       <a class="brand" href="#anasayfa">
         <img class="brandLogo" src="https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f" alt="Kaan Ayaz Logo">
-        <span>Kaan Ayaz<small>Web Tasarım ve Kurumsal Site Hizmetleri</small></span>
+        <span>Geliş & Parılda <small>Hoşgeldiniz</small></span>
       </a>
       <nav class="navlinks">
         <a href="#paketler">Fiyatlar</a><a href="#nova">NOVA</a><a href="#iletisim">İletişim</a>
       </nav>
-      <a class="btn green" href="#iletisim">Teklif Al</a>
+      <a class="btn green" href="#iletisim">Fiyat Ve Görüşme</a>
     </div>
   </header>
   <main id="anasayfa">
@@ -103,7 +103,7 @@
           <div class="cardName"><h2>Kaan Ayaz</h2><p>Freelance Web & Mobile Developer</p></div>
           <div class="programStrip" aria-label="Kullanılan yazılım programları">
             <span class="programChip green">Android Studio</span>
-            <span class="programChip yellow">VS Code</span>
+            <span class="programChip yellow">Xcode</span>
             <span class="programChip">Flutter</span>
             <span class="programChip green">GitHub</span>
             <span class="programChip yellow">C++</span>
@@ -150,13 +150,12 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics-compat.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyBI3nchkLTFKhVsVNijjMVzjqt44mARHpA",
-      authDomain: "nova-b94ea.firebaseapp.com",
-      projectId: "nova-b94ea",
-      storageBucket: "nova-b94ea.firebasestorage.app",
-      messagingSenderId: "246479965459",
-      appId: "1:246479965459:web:035db36db3b7bd17b75ee6",
-      measurementId: "G-CM59EHJ9K1"
+      apiKey: "AIzaSyA2FbAXo-8ciLObANQQSpf_UvWgIM448E",
+      authDomain: "kaan-ayaz-web-panel.firebaseapp.com",
+      projectId: "kaan-ayaz-web-panel",
+      storageBucket: "kaan-ayaz-web-panel.firebasestorage.app",
+      messagingSenderId: "1078879772934",
+      appId: "1:1078879772934:web:4905023526df6ca437fe87"
     };
     if (window.firebase && !firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
@@ -164,6 +163,117 @@
       window.kaanAyazDb = firebase.firestore();
       window.kaanAyazStorage = firebase.storage();
     }
+
+
+    const defaultSiteData = {
+      hero:{
+        title:"Markanızı dijitalde güçlü gösteren kurumsal çözümler",
+        lead:"Kurumsal siteler, bireysel sayfalar ve çoklu iş kolu tanıtımları için sade, hızlı ve güven veren dijital çözümler hazırlanır.",
+        subtitle:"Freelance Web & Mobile Developer",
+        tools:["Android Studio","Xcode","Flutter","GitHub","C++"]
+      },
+      headings:{web:"Web sitesi fiyatları",mobile:"Mobil app fiyatları"},
+      webPackages:[
+        {tag:"Web",name:"Bireysel Web Sayfası",price:"12.000",desc:"Kişisel marka, portföy, hizmet tanıtımı veya tek sayfalık profesyonel web görünümü için hazırlanır.",features:["Tek sayfa modern tasarım","Mobil uyumlu hızlı yapı","Telefon, mail ve WhatsApp bağlantıları","İletişim formu","Temel SEO düzeni"]},
+        {tag:"Kurumsal",name:"Kurumsal Web Sitesi",price:"24.500",desc:"Şirketler, işletmeler, servisler, mağazalar ve profesyonel hizmet veren markalar için kurumsal web sitesi.",features:["Ana sayfa ve hizmet alanları","Kurumsal tanıtım metinleri","İletişim ve teklif alanı","Mobil uyumlu arayüz","Güven veren profesyonel görünüm"]},
+        {tag:"Çoklu İş Kolu",name:"Çoklu Hizmet Sistemi",price:"38.000",desc:"Birden fazla hizmet kolu, farklı sektör sayfaları, ürün veya hizmet grupları olan işletmeler için kapsamlı web yapısı.",features:["Çoklu iş kolu sayfa düzeni","Hizmet, ürün veya kategori alanları","Kurumsal içerik akışı","Gelişmiş iletişim yönlendirmeleri","Panel veya özel yapı için hazır altyapı"]}
+      ],
+      mobilePackages:[
+        {tag:"Mobil App",name:"Başlangıç Mobil Uygulama",price:"35.000",desc:"Basit tanıtım, hizmet gösterimi veya işletme bilgilerini mobil uygulama içinde sunmak isteyen projeler için hazırlanır.",features:["Temel mobil ekranlar","Markaya uygun arayüz","İletişim yönlendirmeleri","Android yayın hazırlığı","Hızlı ve sade kullanım"]},
+        {tag:"Mobil App",name:"Profesyonel Mobil Uygulama",price:"65.000",desc:"Kullanıcı akışı, profil, listeleme, detay ekranları ve yönetilebilir içerik alanları olan mobil uygulamalar için uygundur.",features:["Çok ekranlı mobil yapı","Profil, liste ve detay sayfaları","Firebase bağlantı altyapısı","Bildirim ve veri akışı hazırlığı","Play Store yayın süreci"]},
+        {tag:"Mobil App",name:"Özel Mobil Platform",price:"120.000",desc:"Sosyal akış, ilan, mesajlaşma, harita, panel, üyelik ve gelişmiş sistem isteyen büyük mobil projeler için hazırlanır.",features:["Özel uygulama mimarisi","Üyelik ve profil sistemi","Mesajlaşma, ilan veya harita modülleri","Admin panel bağlantısı","Kapsamlı yayın ve geliştirme süreci"]}
+      ],
+      nova:{
+        logo:"https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/logo.png?alt=media&token=9982f1d1-e6d7-40ec-8d63-27137937ee3e",
+        title:"NOVA Sosyal Otomotiv Platformu",
+        desc:"NOVA; araç tutkunları, servisler, çekiciler, ilan sahipleri ve otomotiv dünyasını tek uygulamada buluşturmayı hedefleyen sosyal otomotiv platformudur.",
+        playLogo:"https://img.freepik.com/premium-vektor/google-play-store-logosu_1273375-804.jpg",
+        appLogo:"https://www.apple.com/v/app-store/c/images/overview/icon_appstore__ev0z770zyxoy_large_2x.png",
+        playLink:"#",
+        appLink:"#"
+      },
+      seo:{
+        title:"Kaan Ayaz | Web Tasarım ve Kurumsal Site Hizmetleri",
+        desc:"Modern, hızlı, mobil uyumlu kurumsal web siteleri, bireysel web sayfaları ve çoklu iş kolu dijital çözümleri.",
+        keywords:"Kaan Ayaz, web developer, mobil uygulama, web tasarım, NOVA, Eskişehir web tasarım",
+        image:"https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/posts%2FERpWTBp6HWa1mWoi35ZygJm3bDe2%2F7Nw8X3FVFB6Lts21XKHH%2F1780508852766_0.jpg?alt=media&token=c51dea6c-bbb2-4ae1-973f-68eb5b3afcc4",
+        footer:"© 2026 Kaan Ayaz Web Tasarım ve Kurumsal Site Hizmetleri. Tüm hakları saklıdır. | kaanayaz.com.tr"
+      }
+    };
+
+    function textOnly(value){ return (value || '').toString(); }
+    function esc(value){ return textOnly(value).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function mergeDeep(target, source){
+      for(const key in (source || {})){
+        if(source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) && !(source[key].toDate)){
+          target[key] = mergeDeep(target[key] || {}, source[key]);
+        } else if(source[key] !== undefined) {
+          target[key] = source[key];
+        }
+      }
+      return target;
+    }
+    function clone(obj){ return JSON.parse(JSON.stringify(obj)); }
+    function splitGradientTitle(title){
+      const words = textOnly(title).trim().split(/\s+/);
+      if(words.length <= 2) return esc(title);
+      const normal = words.slice(0, -2).join(' ');
+      const grad = words.slice(-2).join(' ');
+      return `${esc(normal)} <span class="grad">${esc(grad)}</span>`;
+    }
+    function renderPackage(p, featured){
+      const features = (p.features || []).map(f => `<li>${esc(f)}</li>`).join('');
+      return `<div class="card priceCard ${featured ? 'featured' : ''}"><span class="tag">${esc(p.tag)}</span><h3>${esc(p.name)}</h3><div class="price"><span class="currency">₺</span>${esc(p.price)}</div><p>${esc(p.desc)}</p><ul>${features}</ul></div>`;
+    }
+    function applySiteData(raw){
+      const data = mergeDeep(clone(defaultSiteData), raw || {});
+      document.title = data.seo.title || document.title;
+      const metaDesc = document.querySelector('meta[name="description"]'); if(metaDesc) metaDesc.content = data.seo.desc || metaDesc.content;
+      const metaKeys = document.querySelector('meta[name="keywords"]'); if(metaKeys) metaKeys.content = data.seo.keywords || metaKeys.content;
+      const ogTitle = document.querySelector('meta[property="og:title"]'); if(ogTitle) ogTitle.content = data.seo.title || ogTitle.content;
+      const ogDesc = document.querySelector('meta[property="og:description"]'); if(ogDesc) ogDesc.content = data.seo.desc || ogDesc.content;
+      const ogImage = document.querySelector('meta[property="og:image"]'); if(ogImage) ogImage.content = data.seo.image || ogImage.content;
+
+      const h1 = document.querySelector('.hero h1'); if(h1) h1.innerHTML = splitGradientTitle(data.hero.title);
+      const lead = document.querySelector('.hero .lead'); if(lead) lead.textContent = data.hero.lead || '';
+      const subtitle = document.querySelector('.cardName p'); if(subtitle) subtitle.textContent = data.hero.subtitle || '';
+      const strip = document.querySelector('.programStrip');
+      if(strip){
+        strip.innerHTML = (data.hero.tools || []).slice(0,5).map((t,i)=>`<span class="programChip ${i%2===0?'green':i%3===0?'':'yellow'}">${esc(t)}</span>`).join('');
+      }
+      const priceTitles = document.querySelectorAll('.priceTitle');
+      if(priceTitles[0]) priceTitles[0].innerHTML = splitGradientTitle(data.headings.web || 'Web sitesi fiyatları');
+      if(priceTitles[1]) priceTitles[1].innerHTML = splitGradientTitle(data.headings.mobile || 'Mobil app fiyatları');
+      const priceCards = document.querySelectorAll('.priceCards');
+      if(priceCards[0]) priceCards[0].innerHTML = (data.webPackages || []).slice(0,3).map((p,i)=>renderPackage(p,i===1)).join('');
+      if(priceCards[1]) priceCards[1].innerHTML = (data.mobilePackages || []).slice(0,3).map((p,i)=>renderPackage(p,i===1)).join('');
+
+      const novaLogo = document.querySelector('.novaLogo'); if(novaLogo) novaLogo.src = data.nova.logo || novaLogo.src;
+      const novaTitle = document.querySelector('#nova h2'); if(novaTitle) novaTitle.textContent = data.nova.title || '';
+      const novaDesc = document.querySelector('#nova .sectionHead p'); if(novaDesc) novaDesc.textContent = data.nova.desc || '';
+      const storeBtns = document.querySelector('#nova .storeBtns');
+      if(storeBtns){
+        storeBtns.innerHTML = `<a class="storeBtn" href="${esc(data.nova.playLink || '#')}" target="_blank" rel="noopener"><img src="${esc(data.nova.playLogo)}" alt="Play Store"><span>Play Store<small>İndirme butonu</small></span></a><a class="storeBtn" href="${esc(data.nova.appLink || '#')}" target="_blank" rel="noopener"><img src="${esc(data.nova.appLogo)}" alt="App Store"><span>App Store<small>İndirme butonu</small></span></a>`;
+      }
+      const footer = document.querySelector('footer .wrap'); if(footer) footer.textContent = data.seo.footer || '';
+    }
+
+    async function loadSiteFromFirebase(){
+      try{
+        if(!window.kaanAyazDb) return applySiteData(defaultSiteData);
+        const ref = window.kaanAyazDb.collection('site_admin').doc('homepage');
+        const snap = await ref.get();
+        if(snap.exists){
+          applySiteData(snap.data());
+        } else {
+          await ref.set({...defaultSiteData, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}, {merge:true});
+          applySiteData(defaultSiteData);
+        }
+      }catch(e){
+        applySiteData(defaultSiteData);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadSiteFromFirebase);
 
     function openSoon(store){document.getElementById('modalTitle').textContent=store+' yakında aktif olacak';document.getElementById('soonModal').classList.add('active')}
     function closeSoon(){document.getElementById('soonModal').classList.remove('active')}
