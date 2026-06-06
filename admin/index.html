@@ -20,7 +20,26 @@
 
     html,body{width:100%;overflow-x:hidden}a{color:inherit}.brand span,.userText,.row,.message,.muted,.badge,.btn{min-width:0;overflow-wrap:anywhere}.content,.card,.layout,.wrap{min-width:0}.actionGroup{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}.desktopOnly{display:inline-flex}.mobileOnly{display:none}.row.readForm{border-color:rgba(18,155,79,.60);box-shadow:0 0 0 1px rgba(18,155,79,.08),var(--shadow2)}.row.unreadForm{border-color:rgba(226,43,27,.95);box-shadow:0 0 0 3px rgba(226,43,27,.08),var(--shadow2)}.pulseDot{width:9px;height:9px;border-radius:999px;background:var(--green);display:inline-block;margin-right:7px;box-shadow:0 0 0 5px rgba(18,155,79,.12)}.dangerZone{border:1px solid rgba(226,43,27,.18);background:linear-gradient(180deg,#fff,#fff7f6);border-radius:22px;padding:16px}.splitTools{display:grid;grid-template-columns:1fr 1fr;gap:13px}.topHint{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-weight:850;font-size:13px}.softBox{border:1px solid var(--line);border-radius:20px;padding:15px;background:#fbfdfc}.liveBadge{background:rgba(18,155,79,.10);color:var(--green);border:1px solid rgba(18,155,79,.18);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;display:inline-flex;align-items:center}.tableSafe{overflow-x:auto;width:100%}
 
-    @media(max-width:930px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;overflow-x:auto;border-radius:22px}.tab{min-width:178px}.grid2,.grid3,.grid4,.toolsGrid{grid-template-columns:1fr}.head{display:block}.head .btn{margin-top:12px}.nav{align-items:flex-start;flex-direction:column}.user{width:100%;justify-content:space-between}.card{padding:18px;border-radius:22px}.loginBox{padding:24px;border-radius:30px}.desktopOnly{display:none}.mobileOnly{display:inline-flex}.actionGroup{justify-content:flex-start}.splitTools{grid-template-columns:1fr}.rowTop{display:grid;grid-template-columns:1fr;gap:8px}.btn{width:100%;min-height:44px}.btn.small{width:auto}.user{gap:8px}.brand{max-width:100%}.brand small{word-break:break-word}.stat b{font-size:30px}}}
+
+    .filterPanel{background:linear-gradient(135deg,#06140b,#12361f);color:#fff;border:0;box-shadow:0 24px 70px rgba(18,155,79,.18)}
+    .filterPanel h3{color:#fff}.filterPanel p{color:rgba(255,255,255,.75);font-weight:750}
+    .filterTabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .periodBtn{border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-height:40px;padding:0 14px;font-weight:950}
+    .periodBtn.active,.periodBtn:hover{background:#fff;color:#07120c}
+    .analysisHero{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:14px}
+    .insightBox{border:1px solid var(--line);border-radius:24px;padding:18px;background:linear-gradient(180deg,#fff,#f9fffb)}
+    .insightBox.good{border-color:rgba(18,155,79,.28);background:linear-gradient(180deg,#fff,#f1fff7)}
+    .insightBox.warn{border-color:rgba(255,210,31,.42);background:linear-gradient(180deg,#fff,#fffbea)}
+    .insightBox.bad{border-color:rgba(226,43,27,.25);background:linear-gradient(180deg,#fff,#fff7f6)}
+    .scoreCircle{width:128px;height:128px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--score,0%),#eef3f1 0);margin:auto;position:relative}
+    .scoreCircle:after{content:"";position:absolute;width:94px;height:94px;background:#fff;border-radius:50%}
+    .scoreCircle b{position:relative;z-index:1;font-size:34px;letter-spacing:-1px}
+    .metricLine{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-weight:850}
+    .metricLine:last-child{border-bottom:0}
+    .aiList{display:grid;gap:10px}.aiItem{border:1px solid var(--line);border-radius:18px;padding:13px;background:#fff;font-weight:800;line-height:1.35}
+    .aiItem strong{display:block;margin-bottom:4px}.aiItem.good strong{color:var(--green)}.aiItem.bad strong{color:var(--danger)}.aiItem.warn strong{color:#8a7100}
+
+    @media(max-width:930px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;overflow-x:auto;border-radius:22px}.tab{min-width:178px}.grid2,.grid3,.grid4,.toolsGrid{grid-template-columns:1fr}.head{display:block}.head .btn{margin-top:12px}.nav{align-items:flex-start;flex-direction:column}.user{width:100%;justify-content:space-between}.card{padding:18px;border-radius:22px}.loginBox{padding:24px;border-radius:30px}.desktopOnly{display:none}.mobileOnly{display:inline-flex}.actionGroup{justify-content:flex-start}.splitTools{grid-template-columns:1fr}.analysisHero{grid-template-columns:1fr}.rowTop{display:grid;grid-template-columns:1fr;gap:8px}.btn{width:100%;min-height:44px}.btn.small{width:auto}.user{gap:8px}.brand{max-width:100%}.brand small{word-break:break-word}.stat b{font-size:30px}}}
   </style>
 </head>
 <body>
@@ -45,6 +64,7 @@
 <div class="wrap layout">
 <aside class="side">
   <button class="tab active" data-tab="dashboard">Dashboard<span>Canlı özet</span></button>
+  <button class="tab" data-tab="analysis">Akıllı Analiz<span>Günlük / haftalık / aylık / yıllık</span></button>
   <button class="tab" data-tab="traffic">Site Trafiği<span>Ziyaret ve cihazlar</span></button>
   <button class="tab" data-tab="events">Hareketler<span>Tıklama ve bölüm takibi</span></button>
   <button class="tab" data-tab="logins">Giriş Kayıtları<span>Admin cihaz geçmişi</span></button>
@@ -60,6 +80,73 @@
 
 <main class="content">
 <div id="panelStatus" class="statusBox"></div>
+
+<section class="card filterPanel">
+  <div class="head" style="margin-bottom:0">
+    <div>
+      <h3>Veri Filtresi</h3>
+      <p>Seçilen aralığa göre dashboard, trafik, hareketler, formlar ve akıllı analiz canlı hesaplanır.</p>
+      <div class="filterTabs">
+        <button class="periodBtn active" data-period="all">Tüm Zamanlar</button>
+        <button class="periodBtn" data-period="day">Günlük</button>
+        <button class="periodBtn" data-period="week">Haftalık</button>
+        <button class="periodBtn" data-period="month">Aylık</button>
+        <button class="periodBtn" data-period="year">Yıllık</button>
+      </div>
+    </div>
+    <div class="liveBadge" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.18)"><i class="pulseDot"></i><span id="periodLabel">Tüm zamanlar</span></div>
+  </div>
+</section>
+
+
+<section id="analysis" class="tabContent card hidden">
+  <div class="head">
+    <div><h2>Akıllı Analiz</h2><p>Seçilen tarih aralığına göre site performansını yorumlar, güçlü alanları ve eksikleri gösterir.</p></div>
+    <button class="btn green" onclick="renderAnalysis()">Analizi Yenile</button>
+  </div>
+  <div class="analysisHero">
+    <div class="insightBox good">
+      <h3>Genel Performans Skoru</h3>
+      <p class="muted" style="margin:7px 0 14px">Ziyaret, hareket, form dönüşümü ve aktif kullanıcı yoğunluğuna göre hesaplanır.</p>
+      <div class="scoreCircle" id="scoreCircle" style="--score:0%"><b id="analysisScore">0</b></div>
+    </div>
+    <div class="insightBox">
+      <h3>Özet Metrikler</h3>
+      <div style="height:10px"></div>
+      <div class="metricLine"><span>Filtre</span><b id="analysisPeriod">Tüm zamanlar</b></div>
+      <div class="metricLine"><span>Ziyaret</span><b id="analysisVisits">0</b></div>
+      <div class="metricLine"><span>Hareket</span><b id="analysisEvents">0</b></div>
+      <div class="metricLine"><span>Form</span><b id="analysisForms">0</b></div>
+      <div class="metricLine"><span>Dönüşüm</span><b id="analysisRate">%0</b></div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="insightBox">
+      <h3>Akıllı Yorumlar</h3>
+      <div style="height:10px"></div>
+      <div id="smartInsights" class="aiList"></div>
+    </div>
+    <div class="insightBox">
+      <h3>Önerilen Aksiyonlar</h3>
+      <div style="height:10px"></div>
+      <div id="smartActions" class="aiList"></div>
+    </div>
+  </div>
+  <div style="height:14px"></div>
+  <div class="grid2">
+    <div class="insightBox">
+      <h3>En Güçlü Bölümler</h3>
+      <div style="height:10px"></div>
+      <div id="analysisTopSections" class="miniTable"></div>
+    </div>
+    <div class="insightBox">
+      <h3>Cihaz Dağılımı</h3>
+      <div style="height:10px"></div>
+      <div id="analysisDevices" class="miniTable"></div>
+    </div>
+  </div>
+</section>
+
 <section id="dashboard" class="tabContent card">
   <div class="head"><div><h2>Canlı Dashboard</h2><p>Site, form, ziyaret ve hareket verileri Firestore’dan canlı okunur.</p><div class="topHint"><span class="liveBadge"><i class="pulseDot"></i>Canlı takip aktif</span><span>Mobil ve masaüstünde taşma engelli yeni panel.</span></div></div><div class="actionGroup"><button class="btn ghost" onclick="resetStatsQuick()">İstatistikleri Sıfırla</button><button class="btn green" onclick="loadAll()">Yenile</button></div></div>
   <div class="grid4">
@@ -184,7 +271,7 @@ try{db.enablePersistence({synchronizeTabs:true}).catch(()=>{});}catch(e){}
 const $=id=>document.getElementById(id);
 const allowedAdminEmails=["kaanayazstudio@gmail.com","volkanilgin762534@gmail.com"].map(e=>e.toLowerCase());
 const defaultSiteData={hero:{title:"İşletmenizi dijitalde güçlü, hızlı ve profesyonel gösteren web çözümleri.",lead:"Kurumsal sitelerden bireysel tanıtım sayfalarına, çoklu iş kolu yapılarından özel yönetim panellerine kadar modern ve mobil uyumlu web çözümleri hazırlanır.",subtitle:"Web Tasarım ve Yazılım Geliştirme",tools:["Android Studio","Xcode","Flutter","GitHub","C++"]},headings:{web:"Web sitesi fiyatları",mobile:"Mobil app fiyatları"},webPackages:[{tag:"Web",name:"Bireysel Web Sayfası",price:"12.000",desc:"Kişisel marka, portföy, hizmet tanıtımı veya tek sayfalık profesyonel web görünümü için hazırlanır.",features:["Tek sayfa modern tasarım","Mobil uyumlu hızlı yapı","İletişim formu","Temel SEO düzeni","Hızlı teslim akışı"]},{tag:"Kurumsal",name:"Kurumsal Web Sitesi",price:"24.500",desc:"Şirketler, işletmeler, servisler, mağazalar ve profesyonel hizmet veren markalar için kurumsal web sitesi.",features:["Ana sayfa ve hizmet alanları","Kurumsal tanıtım metinleri","İletişim ve teklif alanı","Mobil uyumlu arayüz","Güven veren profesyonel görünüm"]},{tag:"Çoklu İş Kolu",name:"Çoklu Hizmet Sistemi",price:"38.000",desc:"Birden fazla hizmet kolu, farklı sektör sayfaları, ürün veya hizmet grupları olan işletmeler için kapsamlı web yapısı.",features:["Çoklu iş kolu sayfa düzeni","Hizmet, ürün veya kategori alanları","Kurumsal içerik akışı","Gelişmiş iletişim yönlendirmeleri","Panel veya özel yapı için hazır altyapı"]}],mobilePackages:[{tag:"Mobil App",name:"Başlangıç Mobil Uygulama",price:"35.000",desc:"Basit tanıtım, hizmet gösterimi veya işletme bilgilerini mobil uygulama içinde sunmak isteyen projeler için hazırlanır.",features:["Temel mobil ekranlar","Markaya uygun arayüz","İletişim yönlendirmeleri","Android yayın hazırlığı","Hızlı ve sade kullanım"]},{tag:"Mobil App",name:"Profesyonel Mobil Uygulama",price:"65.000",desc:"Kullanıcı akışı, profil, listeleme, detay ekranları ve yönetilebilir içerik alanları olan mobil uygulamalar için uygundur.",features:["Çok ekranlı mobil yapı","Profil, liste ve detay sayfaları","Firebase bağlantı altyapısı","Bildirim ve veri akışı hazırlığı","Play Store yayın süreci"]},{tag:"Mobil App",name:"Özel Mobil Platform",price:"120.000",desc:"Sosyal akış, ilan, mesajlaşma, harita, panel, üyelik ve gelişmiş sistem isteyen büyük mobil projeler için hazırlanır.",features:["Özel uygulama mimarisi","Üyelik ve profil sistemi","Mesajlaşma, ilan veya harita modülleri","Admin panel bağlantısı","Kapsamlı yayın ve geliştirme süreci"]}],nova:{logo:"https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/logo.png?alt=media&token=9982f1d1-e6d7-40ec-8d63-27137937ee3e",title:"NOVA Sosyal Otomotiv Platformu",desc:"NOVA; araç tutkunları, servisler, çekiciler, ilan sahipleri ve otomotiv dünyasını tek uygulamada buluşturan sosyal mobil platformdur.",playLogo:"https://img.freepik.com/premium-vektor/google-play-store-logosu_1273375-804.jpg",appLogo:"https://www.apple.com/v/app-store/c/images/overview/icon_appstore__ev0z770zyxoy_large_2x.png",playLink:"#",appLink:"#"},seo:{title:"Kaan Ayaz Studio | Web Tasarım ve Yazılım Hizmetleri",desc:"Kurumsal web sitesi, bireysel tanıtım sitesi, çoklu iş kolu web çözümleri ve mobil uygulama geliştirme hizmetleri.",keywords:"web tasarım, kurumsal site, mobil uygulama, yazılım, Eskişehir web tasarım, Kaan Ayaz Studio",image:"https://firebasestorage.googleapis.com/v0/b/modanta-canta.firebasestorage.app/o/WhatsApp%20Image%202026-04-30%20at%2019.12.55.jpeg?alt=media&token=cfbc438e-1023-4eb4-9d3c-a8c58c31481f",footer:"© 2026 Kaan Ayaz Studio. Tüm hakları saklıdır. | kaanayaz.com.tr"},updatedAt:null};
-let siteData=JSON.parse(JSON.stringify(defaultSiteData)),formsCache=[],visitsCache=[],eventsCache=[],loginLogsCache=[],sessionsCache=[],unsubs=[],lastLoginWrite=0;
+let siteData=JSON.parse(JSON.stringify(defaultSiteData)),formsCache=[],visitsCache=[],eventsCache=[],loginLogsCache=[],sessionsCache=[],unsubs=[],lastLoginWrite=0,currentPeriod='all';
 const loginPage=$('loginPage'),panel=$('panel'),loginError=$('loginError'),originNote=$('originNote');
 if(originNote) originNote.textContent='Açılan domain: '+location.hostname;
 function showStatus(msg){const el=$('panelStatus');if(!msg){el.classList.remove('show');el.textContent='';return}el.textContent=msg;el.classList.add('show')}
@@ -196,6 +283,7 @@ auth.onAuthStateChanged(async user=>{if(!user){unsubs.forEach(u=>u&&u());unsubs=
  $('adminName').textContent=user.displayName||'Yönetici';$('adminEmail').textContent=email;$('adminPhoto').src=user.photoURL||'https://ui-avatars.com/api/?name=Admin&background=080808&color=fff';
  loginPage.classList.add('hidden');panel.classList.add('active');await writeLoginLog(user);startLive();await loadAll();});
 document.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tabContent').forEach(c=>c.classList.add('hidden'));btn.classList.add('active');$(btn.dataset.tab).classList.remove('hidden')});
+document.querySelectorAll('.periodBtn').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.periodBtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentPeriod=btn.dataset.period||'all';const labels={all:'Tüm zamanlar',day:'Günlük',week:'Haftalık',month:'Aylık',year:'Yıllık'};$('periodLabel').textContent=labels[currentPeriod];renderFormsAll();renderVisitsAll();renderEventsAll();renderAnalysis();});
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
 function nowStamp(){return firebase.firestore.FieldValue.serverTimestamp()}function safe(v){return(v??'').toString()}function esc(s){return safe(s).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}function mergeDeep(t,s){for(const k in(s||{})){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k])&&!(s[k].toDate)){t[k]=mergeDeep(t[k]||{},s[k])}else{t[k]=s[k]}}return t}
 function deviceType(){return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'Mobil':'Bilgisayar'}
@@ -216,13 +304,27 @@ async function saveSeo(){await db.collection('site_admin').doc('homepage').set({
 function toMs(ts){return ts&&ts.toDate?ts.toDate().getTime():0}function fmt(ts){return ts&&ts.toDate?ts.toDate().toLocaleString('tr-TR'):'-'}function today(ts){if(!ts||!ts.toDate)return false;const d=ts.toDate(),n=new Date();return d.toDateString()===n.toDateString()}function active(v){return v.online!==false && (Date.now()-toMs(v.lastSeen||v.createdAt))<90*1000}
 function isActiveSession(s){if(!s.lastSeen||!s.lastSeen.toDate)return false;return Date.now()-s.lastSeen.toDate().getTime()<90000}
 function renderActiveSessions(){if(statActive)statActive.textContent=sessionsCache.filter(isActiveSession).length}
-function renderFormsAll(){$('statForms').textContent=formsCache.length;$('statUnread').textContent=formsCache.filter(f=>!f.read).length;renderForms('formsList',formsCache);renderForms('recentForms',formsCache.slice(0,5),true)}
+
+function periodName(){return({all:'Tüm zamanlar',day:'Günlük',week:'Haftalık',month:'Aylık',year:'Yıllık'})[currentPeriod]||'Tüm zamanlar'}
+function periodStart(){
+  const n=new Date();
+  if(currentPeriod==='day')return new Date(n.getFullYear(),n.getMonth(),n.getDate()).getTime();
+  if(currentPeriod==='week'){const d=new Date(n.getFullYear(),n.getMonth(),n.getDate());const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return d.getTime();}
+  if(currentPeriod==='month')return new Date(n.getFullYear(),n.getMonth(),1).getTime();
+  if(currentPeriod==='year')return new Date(n.getFullYear(),0,1).getTime();
+  return 0;
+}
+function inPeriod(item){const ms=toMs(item.createdAt||item.lastSeen);return currentPeriod==='all'||ms>=periodStart()}
+function filteredForms(){return formsCache.filter(inPeriod)}
+function filteredVisits(){return visitsCache.filter(inPeriod)}
+function filteredEvents(){return eventsCache.filter(inPeriod)}
+function renderFormsAll(){const forms=filteredForms();$('statForms').textContent=forms.length;$('statUnread').textContent=forms.filter(f=>!f.read).length;renderForms('formsList',forms);renderForms('recentForms',forms.slice(0,5),true);renderAnalysis()}
 function renderForms(id,forms,compact=false){const box=$(id);if(!forms.length){box.innerHTML='<div class="empty">Henüz form talebi yok. Ana siteye takip/form kodu eklenince burada canlı görünecek.</div>';return}box.innerHTML=forms.map(f=>`<div class="row ${f.read?'readForm':'unreadForm'}"><div class="rowTop"><div><h3>${esc(f.name||f.fullName||f.adSoyad||'İsimsiz Talep')}</h3><div class="muted">${esc(f.email||'-')}${f.phone?' • '+esc(f.phone):''}</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end"><span class="badge ${f.read?'':'red'}">${f.read?'Okundu':'Okunmamış'}</span><span class="badge">${esc(f.service||f.subject||'Form')}</span></div></div>${compact?'':`<div class="message">${esc(f.message||f.mesaj||'-')}</div>`}<div class="rowTop"><span class="muted">${fmt(f.createdAt)}</span>${compact?'':`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small green" onclick="markRead('${f.id}')">Okundu Yap</button><button class="btn small danger" onclick="deleteForm('${f.id}')">Sil</button></div>`}</div></div>`).join('')}
 async function markRead(id){await db.collection('website_contact_forms').doc(id).set({read:true,status:'read',readAt:nowStamp()},{merge:true});toast('Form okundu')}async function deleteForm(id){if(!confirm('Bu form kaydı silinsin mi?'))return;await db.collection('website_contact_forms').doc(id).delete();toast('Form silindi')}
-function renderVisitsAll(){const act=visitsCache.filter(active).length;$('statVisits').textContent=visitsCache.length;$('statActive').textContent=act;$('todayVisits').textContent=visitsCache.filter(v=>today(v.createdAt)).length;$('activeVisits').textContent=act;$('mobileVisits').textContent=visitsCache.filter(v=>(v.device||'').includes('Mobil')).length;$('desktopVisits').textContent=visitsCache.filter(v=>(v.device||'').includes('Bilgisayar')).length;$('visitsList').innerHTML=visitsCache.length?visitsCache.map(v=>`<div class="row"><div class="rowTop"><div><h3>${esc(v.pageTitle||v.path||'Ziyaret')}</h3><div class="muted">${esc(v.url||'-')}</div></div><span class="badge ${active(v)?'yellow':''}">${active(v)?'Aktif':'Çıkış yaptı'} • ${esc(v.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(v.createdAt)}</span><span class="muted">${esc(v.screen||'')} ${v.language?' • '+esc(v.language):''}</span></div><div class="message">${esc(v.userAgent||'')}</div></div>`).join(''):'<div class="empty">Henüz ziyaret kaydı yok. Takip kodu ana siteye eklenince burada canlı görünür.</div>'}
+function renderVisitsAll(){const visits=filteredVisits();const act=visits.filter(active).length;$('statVisits').textContent=visits.length;$('statActive').textContent=act;$('todayVisits').textContent=visits.filter(v=>today(v.createdAt)).length;$('activeVisits').textContent=act;$('mobileVisits').textContent=visits.filter(v=>(v.device||'').includes('Mobil')).length;$('desktopVisits').textContent=visits.filter(v=>(v.device||'').includes('Bilgisayar')).length;$('visitsList').innerHTML=visits.length?visits.map(v=>`<div class="row"><div class="rowTop"><div><h3>${esc(v.pageTitle||v.path||'Ziyaret')}</h3><div class="muted">${esc(v.url||'-')}</div></div><span class="badge ${active(v)?'yellow':''}">${active(v)?'Aktif':'Çıkış yaptı'} • ${esc(v.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(v.createdAt)}</span><span class="muted">${esc(v.screen||'')} ${v.language?' • '+esc(v.language):''}</span></div><div class="message">${esc(v.userAgent||'')}</div></div>`).join(''):'<div class="empty">Henüz ziyaret kaydı yok. Takip kodu ana siteye eklenince burada canlı görünür.</div>'}
 function countBy(arr,keyFn){const m={};arr.forEach(x=>{const k=keyFn(x)||'Bilinmeyen';m[k]=(m[k]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])}
 function bars(el,items){if(!items.length){el.innerHTML='<div class="empty">Henüz veri yok.</div>';return}const max=Math.max(...items.map(i=>i[1]),1);el.innerHTML=items.slice(0,8).map(([k,v])=>`<div><div class="rowTop"><b>${esc(k)}</b><span class="badge">${v}</span></div><div class="bar"><i style="width:${Math.max(8,(v/max)*100)}%"></i></div></div>`).join('')}
-function renderEventsAll(){$('statEvents').textContent=eventsCache.length;bars($('topSections'),countBy(eventsCache.filter(e=>e.type==='section_view'),e=>e.section));bars($('topClicks'),countBy(eventsCache.filter(e=>e.type==='click'),e=>e.label||e.text||e.target));bars($('topViews'),countBy(eventsCache.filter(e=>e.type==='section_view'),e=>e.section));$('eventsList').innerHTML=eventsCache.length?eventsCache.map(e=>`<div class="row"><div class="rowTop"><div><h3>${esc(e.type||'Hareket')}</h3><div class="muted">${esc(e.label||e.section||e.path||'-')}</div></div><span class="badge ${e.type==='click'?'yellow':'black'}">${esc(e.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(e.createdAt)}</span><span class="muted">${esc(e.url||'')}</span></div></div>`).join(''):'<div class="empty">Henüz hareket kaydı yok. Kullanıcı tıklamaları takip kodu ile otomatik düşer.</div>'}
+function renderEventsAll(){const events=filteredEvents();$('statEvents').textContent=events.length;bars($('topSections'),countBy(events.filter(e=>e.type==='section_view'),e=>e.section));bars($('topClicks'),countBy(events.filter(e=>e.type==='click'),e=>e.label||e.text||e.target));bars($('topViews'),countBy(events.filter(e=>e.type==='section_view'),e=>e.section));$('eventsList').innerHTML=events.length?events.map(e=>`<div class="row"><div class="rowTop"><div><h3>${esc(e.type||'Hareket')}</h3><div class="muted">${esc(e.label||e.section||e.path||'-')}</div></div><span class="badge ${e.type==='click'?'yellow':'black'}">${esc(e.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(e.createdAt)}</span><span class="muted">${esc(e.url||'')}</span></div></div>`).join(''):'<div class="empty">Henüz hareket kaydı yok. Kullanıcı tıklamaları takip kodu ile otomatik düşer.</div>'}
 function renderLoginLogs(){$('loginLogsList').innerHTML=loginLogsCache.length?loginLogsCache.map(l=>`<div class="row"><div class="rowTop"><div><h3>${esc(l.name||'Admin')}</h3><div class="muted">${esc(l.email||'-')}</div></div><span class="badge">${esc(l.device||'-')}</span></div><div class="rowTop"><span class="muted">${fmt(l.createdAt)}</span><span class="muted">${esc(l.screen||'')} • ${esc(l.platform||'')}</span></div><div class="message">${esc(l.userAgent||'')}</div></div>`).join(''):'<div class="empty">Henüz giriş kaydı yok.</div>'}
 function siteTrackingCode(){return `<script>
 (function(){
@@ -308,6 +410,37 @@ async function markAllFormsRead(){
   }
 }
 
+
+function renderAnalysis(){
+  if(!$('analysisScore'))return;
+  const visits=filteredVisits(), events=filteredEvents(), forms=filteredForms();
+  const activeCount=visits.filter(active).length;
+  const mobile=visits.filter(v=>(v.device||'').includes('Mobil')).length;
+  const desktop=visits.filter(v=>(v.device||'').includes('Bilgisayar')).length;
+  const rate=visits.length?Math.round((forms.length/visits.length)*100):0;
+  const engagement=visits.length?Math.round((events.length/visits.length)*10):0;
+  const score=Math.max(0,Math.min(100,Math.round((Math.min(visits.length,100)/100)*30 + Math.min(rate,20)*2 + Math.min(engagement,30) + Math.min(activeCount,10)*2)));
+  $('analysisScore').textContent=score;$('scoreCircle').style.setProperty('--score',score+'%');
+  $('analysisPeriod').textContent=periodName();$('analysisVisits').textContent=visits.length;$('analysisEvents').textContent=events.length;$('analysisForms').textContent=forms.length;$('analysisRate').textContent='%'+rate;
+  bars($('analysisTopSections'),countBy(events.filter(e=>e.type==='section_view'),e=>e.section));
+  bars($('analysisDevices'),[['Mobil',mobile],['Bilgisayar',desktop]].filter(x=>x[1]>0));
+  const insights=[];
+  if(!visits.length)insights.push(['bad','Henüz veri yok','Bu filtre aralığında ziyaret kaydı bulunmadı. Ana site takip kodu ve Firestore izinleri kontrol edilmeli.']);
+  else insights.push(['good','Trafik var','Bu aralıkta '+visits.length+' ziyaret görünüyor. Panel canlı veri alıyor.']);
+  if(rate>=5)insights.push(['good','Form dönüşümü güçlü','Ziyaretçilere göre form alma oranı iyi seviyede.']);
+  else if(visits.length>0)insights.push(['warn','Form dönüşümü düşük','Ziyaret var ancak form sayısı düşük. Teklif ve iletişim alanları daha görünür yapılmalı.']);
+  if(mobile>desktop)insights.push(['good','Mobil ağırlıklı trafik','Ziyaretçilerin çoğu mobil cihazdan geliyor. Mobil görünüm öncelikli kontrol edilmeli.']);
+  if(events.length<visits.length && visits.length>3)insights.push(['warn','Etkileşim düşük','Ziyaretçiler sayfada az tıklama yapmış görünüyor. Butonlar ve fiyat kartları güçlendirilmeli.']);
+  const actions=[];
+  actions.push(['good','Üst bölümü güçlendir','İlk ekranda net teklif butonu, WhatsApp ve hizmet kartları görünür kalmalı.']);
+  actions.push(['warn','Form alanını öne al','Mobilde form veya teklif butonu sayfanın üst ve alt alanında tekrar gösterilmeli.']);
+  if(activeCount>0)actions.push(['good','Canlı kullanıcı var','Aktif kullanıcılar göründüğünde hızlı dönüş için iletişim kanalları hazır tutulmalı.']);
+  else actions.push(['warn','Aktif kullanıcı yok','Bu aralıkta canlı kullanıcı bulunmuyor; trafik kampanyası veya sosyal medya paylaşımı yapılabilir.']);
+  $('smartInsights').innerHTML=insights.map(i=>`<div class="aiItem ${i[0]}"><strong>${esc(i[1])}</strong>${esc(i[2])}</div>`).join('');
+  $('smartActions').innerHTML=actions.map(i=>`<div class="aiItem ${i[0]}"><strong>${esc(i[1])}</strong>${esc(i[2])}</div>`).join('');
+}
+
+window.renderAnalysis=renderAnalysis;
 window.loadAll=loadAll;window.loadForms=loadForms;window.loadVisits=loadVisits;window.loadEvents=loadEvents;window.loadLoginLogs=loadLoginLogs;
 window.saveHero=saveHero;window.savePackages=savePackages;window.saveNova=saveNova;window.saveSeo=saveSeo;window.markRead=markRead;window.deleteForm=deleteForm;window.clearCollectionSafe=clearCollectionSafe;window.resetStatsQuick=resetStatsQuick;window.markAllFormsRead=markAllFormsRead;
 </script>
