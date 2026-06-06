@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaan Ayaz | Site Yönetim Paneli</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --white:#fff;--black:#080808;--text:#101214;--muted:#68707c;--green:#129b4f;--yellow:#ffd21f;
+      --line:#e8edf3;--soft:#f7f9fc;--danger:#d92d20;--shadow:0 18px 55px rgba(0,0,0,.09);--radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#fff,#f7faf8);color:var(--text);line-height:1.5;min-height:100vh}
+    a{text-decoration:none;color:inherit}button,input,textarea,select{font:inherit}.wrap{width:min(1280px,94%);margin:auto}
+    .topline{height:5px;background:linear-gradient(90deg,var(--green),var(--yellow),#111,var(--green))}
+    .loginPage{min-height:calc(100vh - 5px);display:grid;place-items:center;padding:28px}
+    .loginBox{width:min(460px,100%);background:#fff;border:1px solid var(--line);border-radius:32px;padding:30px;box-shadow:var(--shadow);text-align:center}
+    .loginLogo{width:74px;height:74px;border-radius:24px;margin:0 auto 14px;object-fit:cover;border:1px solid var(--line)}
+    h1{font-size:34px;letter-spacing:-1.4px;line-height:1.05;margin-bottom:8px}h2{font-size:28px;letter-spacing:-1px;line-height:1.1}h3{font-size:19px;letter-spacing:-.4px}
+    p{color:var(--muted);font-weight:650}.btn{border:1px solid var(--black);background:#fff;border-radius:999px;min-height:44px;padding:0 18px;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.2s}.btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(0,0,0,.10)}
+    .btn.dark{background:#080808;color:#fff}.btn.green{background:var(--green);border-color:var(--green);color:#fff}.btn.yellow{background:var(--yellow);border-color:var(--yellow);color:#111}.btn.ghost{border-color:var(--line)}.btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}.btn.small{min-height:36px;padding:0 13px;font-size:13px}
+    .googleMark{width:20px;height:20px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:1000;color:#4285f4}
+    .hidden{display:none!important}.panel{display:none}.panel.active{display:block}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:10px;font-weight:950}.brand img{width:42px;height:42px;border-radius:14px;object-fit:cover;border:1px solid var(--line)}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-top:-3px}
+    .userMini{display:flex;align-items:center;gap:10px}.userMini img{width:36px;height:36px;border-radius:50%;object-fit:cover}.userText{font-size:12px;color:var(--muted);font-weight:800;text-align:right}.layout{display:grid;grid-template-columns:270px 1fr;gap:18px;padding:22px 0 42px}
+    .sidebar{position:sticky;top:90px;height:max-content;background:#fff;border:1px solid var(--line);border-radius:28px;padding:14px;box-shadow:0 10px 28px rgba(0,0,0,.05)}.tabBtn{width:100%;border:0;background:transparent;text-align:left;padding:13px 14px;border-radius:16px;font-weight:900;color:#303640;cursor:pointer;margin-bottom:5px}.tabBtn:hover,.tabBtn.active{background:#101214;color:#fff}.tabBtn.active span,.tabBtn:hover span{color:#fff}.tabBtn span{display:block;font-size:11px;color:var(--muted);font-weight:750;margin-top:2px}
+    .content{display:grid;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.045)}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:17px}.head p{margin-top:5px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.stat{border:1px solid var(--line);border-radius:22px;padding:18px;background:linear-gradient(180deg,#fff,#fffdf3)}.stat b{display:block;font-size:30px;letter-spacing:-1.2px}.stat span{color:var(--muted);font-size:12px;font-weight:850}
+    label{display:block;font-size:12px;font-weight:950;color:#3d4550;margin-bottom:7px}.field{margin-bottom:13px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:15px;padding:13px 14px;background:#fff;outline:none}textarea{min-height:110px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(18,155,79,.12)}
+    .saveBar{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}.list{display:grid;gap:10px}.row{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff;display:grid;gap:9px}.rowTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(18,155,79,.10);color:var(--green);font-size:12px;font-weight:950}.badge.yellow{background:rgba(255,210,31,.26);color:#111}.badge.black{background:#111;color:#fff}.muted{color:var(--muted);font-size:13px;font-weight:750}.messageText{white-space:pre-wrap;color:#29313a;font-weight:650}.packageBox{border:1px solid var(--line);border-radius:20px;padding:16px;background:#fff}.packageTitle{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.features{display:grid;gap:8px}.featureRow{display:flex;gap:8px}.featureRow input{flex:1}.toolsGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.toast{position:fixed;right:18px;bottom:18px;background:#101214;color:#fff;border-radius:16px;padding:14px 16px;font-weight:850;box-shadow:var(--shadow);display:none;z-index:100}.toast.show{display:block}.empty{padding:18px;border:1px dashed #d8dee8;border-radius:18px;color:var(--muted);font-weight:800;text-align:center}.dangerText{color:var(--danger);font-weight:850}.note{background:#fffdf0;border:1px solid #f3e5a4;border-radius:18px;padding:14px;color:#5b5100;font-weight:800;font-size:13px}
+    @media(max-width:940px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;overflow-x:auto;border-radius:20px}.tabBtn{min-width:170px}.grid2,.grid3,.toolsGrid{grid-template-columns:1fr}.nav{height:auto;min-height:68px;align-items:flex-start;padding:12px 0;flex-direction:column}.userMini{width:100%;justify-content:space-between}.head{display:block}.head .btn{margin-top:12px}.card{padding:18px;border-radius:20px}}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+
+  <section id="loginPage" class="loginPage">
+    <div class="loginBox">
+      <img class="loginLogo" src="https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/posts%2FERpWTBp6HWa1mWoi35ZygJm3bDe2%2F7Nw8X3FVFB6Lts21XKHH%2F1780508852766_0.jpg?alt=media&token=c51dea6c-bbb2-4ae1-973f-68eb5b3afcc4" alt="Panel">
+      <h1>Site Yönetim Paneli</h1>
+      <p>Bu panel yalnızca yetkili Google hesabı ile açılır. İçerikler, paketler, formlar ve site ayarları tek ekrandan yönetilir.</p>
+      <div style="height:18px"></div>
+      <button class="btn dark" id="googleLoginBtn"><span class="googleMark">G</span>Google ile Giriş Yap</button>
+      <p id="loginError" class="dangerText" style="display:none;margin-top:14px"></p>
+    </div>
+  </section>
+
+  <section id="panel" class="panel">
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#dashboard">
+          <img src="https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/posts%2FERpWTBp6HWa1mWoi35ZygJm3bDe2%2F7Nw8X3FVFB6Lts21XKHH%2F1780508852766_0.jpg?alt=media&token=c51dea6c-bbb2-4ae1-973f-68eb5b3afcc4" alt="Kaan Ayaz">
+          <span>Kaan Ayaz<small>Site Yönetim Paneli</small></span>
+        </a>
+        <div class="userMini">
+          <div class="userText"><div id="adminName">Yönetici</div><div id="adminEmail">-</div></div>
+          <img id="adminPhoto" src="" alt="Admin">
+          <button class="btn danger small" id="logoutBtn">Çıkış Yap</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap layout">
+      <aside class="sidebar">
+        <button class="tabBtn active" data-tab="dashboard">Dashboard<span>Özet ve hızlı durum</span></button>
+        <button class="tabBtn" data-tab="hero">Ana Sayfa<span>Slogan, açıklama, programlar</span></button>
+        <button class="tabBtn" data-tab="webPackages">Web Fiyatları<span>3 web paketi</span></button>
+        <button class="tabBtn" data-tab="mobilePackages">Mobil App Fiyatları<span>3 mobil paket</span></button>
+        <button class="tabBtn" data-tab="nova">NOVA Alanı<span>Logo, açıklama, mağaza linkleri</span></button>
+        <button class="tabBtn" data-tab="forms">Formlar<span>Gelen müşteri talepleri</span></button>
+        <button class="tabBtn" data-tab="seo">SEO & Footer<span>Meta, sosyal görsel, alt yazı</span></button>
+      </aside>
+
+      <main class="content">
+        <section id="dashboard" class="tabContent card">
+          <div class="head"><div><h2>Dashboard</h2><p>Site panelinin genel durumu ve son gelen formlar.</p></div><button class="btn green" onclick="loadAll()">Yenile</button></div>
+          <div class="grid3">
+            <div class="stat"><b id="statForms">0</b><span>Toplam form</span></div>
+            <div class="stat"><b id="statUnread">0</b><span>Okunmamış talep</span></div>
+            <div class="stat"><b id="statUpdated">-</b><span>Son içerik güncellemesi</span></div>
+          </div>
+          <div style="height:16px"></div>
+          <h3>Son Talepler</h3>
+          <div style="height:10px"></div>
+          <div id="recentForms" class="list"></div>
+        </section>
+
+        <section id="hero" class="tabContent card hidden">
+          <div class="head"><div><h2>Ana Sayfa Yönetimi</h2><p>Başlık, kısa açıklama ve profil kartı altındaki programlar.</p></div></div>
+          <div class="field"><label>Başlık / Slogan</label><textarea id="heroTitle"></textarea></div>
+          <div class="field"><label>Alt Açıklama</label><textarea id="heroLead"></textarea></div>
+          <div class="field"><label>Profil Kartı Alt Yazısı</label><input id="heroSubtitle" type="text"></div>
+          <div class="field"><label>Kullanılan Programlar ve Teknolojiler - 5 adet</label><div class="toolsGrid" id="toolsInputs"></div></div>
+          <div class="saveBar"><button class="btn green" onclick="saveHero()">Ana Sayfayı Kaydet</button></div>
+        </section>
+
+        <section id="webPackages" class="tabContent card hidden">
+          <div class="head"><div><h2>Web Fiyatları</h2><p>Web sitesi, kurumsal site, bireysel site ve çoklu iş kolu paketleri.</p></div></div>
+          <div class="field"><label>Animasyonlu Web Başlığı</label><input id="webHeading" type="text"></div>
+          <div class="grid3" id="webPackageInputs"></div>
+          <div class="saveBar"><button class="btn green" onclick="savePackages('web')">Web Paketlerini Kaydet</button></div>
+        </section>
+
+        <section id="mobilePackages" class="tabContent card hidden">
+          <div class="head"><div><h2>Mobil App Fiyatları</h2><p>Mobil uygulama isteyen müşteriler için 3 farklı fiyat paketi.</p></div></div>
+          <div class="field"><label>Animasyonlu Mobil Başlığı</label><input id="mobileHeading" type="text"></div>
+          <div class="grid3" id="mobilePackageInputs"></div>
+          <div class="saveBar"><button class="btn green" onclick="savePackages('mobile')">Mobil Paketleri Kaydet</button></div>
+        </section>
+
+        <section id="nova" class="tabContent card hidden">
+          <div class="head"><div><h2>NOVA Alanı</h2><p>NOVA sosyal otomotiv platformu bölümü ve mağaza butonları.</p></div></div>
+          <div class="note">NOVA logosu sadece bu bölümde kullanılacak şekilde yönetilir.</div>
+          <div style="height:14px"></div>
+          <div class="field"><label>NOVA Logo URL</label><input id="novaLogo" type="url"></div>
+          <div class="field"><label>NOVA Başlığı</label><input id="novaTitle" type="text"></div>
+          <div class="field"><label>NOVA Açıklaması</label><textarea id="novaDesc"></textarea></div>
+          <div class="grid2">
+            <div class="field"><label>Play Store Logo URL</label><input id="playLogo" type="url"></div>
+            <div class="field"><label>Play Store İndirme Linki</label><input id="playLink" type="url"></div>
+            <div class="field"><label>App Store Logo URL</label><input id="appLogo" type="url"></div>
+            <div class="field"><label>App Store İndirme Linki</label><input id="appLink" type="url"></div>
+          </div>
+          <div class="saveBar"><button class="btn green" onclick="saveNova()">NOVA Alanını Kaydet</button></div>
+        </section>
+
+        <section id="forms" class="tabContent card hidden">
+          <div class="head"><div><h2>Gelen Formlar</h2><p>Web sitesindeki iletişim formundan gelen tüm talepler.</p></div><button class="btn green" onclick="loadForms()">Formları Yenile</button></div>
+          <div id="formsList" class="list"></div>
+        </section>
+
+        <section id="seo" class="tabContent card hidden">
+          <div class="head"><div><h2>SEO & Footer</h2><p>Sayfa başlığı, açıklama, sosyal medya görseli ve footer bilgileri.</p></div></div>
+          <div class="field"><label>Meta Title</label><input id="seoTitle" type="text"></div>
+          <div class="field"><label>Meta Description</label><textarea id="seoDesc"></textarea></div>
+          <div class="field"><label>Meta Keywords</label><input id="seoKeywords" type="text"></div>
+          <div class="field"><label>Open Graph Görsel URL</label><input id="seoImage" type="url"></div>
+          <div class="field"><label>Footer Yazısı</label><input id="footerText" type="text"></div>
+          <div class="saveBar"><button class="btn green" onclick="saveSeo()">SEO Ayarlarını Kaydet</button></div>
+        </section>
+      </main>
+    </div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBI3nchkLTFKhVsVNijjMVzjqt44mARHpA",
+      authDomain: "nova-b94ea.firebaseapp.com",
+      projectId: "nova-b94ea",
+      storageBucket: "nova-b94ea.firebasestorage.app",
+      messagingSenderId: "246479965459",
+      appId: "1:246479965459:web:035db36db3b7bd17b75ee6",
+      measurementId: "G-CM59EHJ9K1"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    try { firebase.analytics(); } catch(e) {}
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    const allowedAdminEmails = [
+      "kaanayazstudio@gmail.com",
+      "volkanilgin762534@gmail.com"
+    ];
+
+    const defaultSiteData = {
+      hero:{
+        title:"İşletmenizi dijitalde güçlü, hızlı ve profesyonel gösteren web çözümleri.",
+        lead:"Kurumsal sitelerden bireysel tanıtım sayfalarına, çoklu iş kolu yapılarından özel yönetim panellerine kadar modern ve mobil uyumlu web çözümleri hazırlanır.",
+        subtitle:"Web Tasarım ve Yazılım Geliştirme",
+        tools:["HTML", "CSS", "JavaScript", "Android Studio", "C++"]
+      },
+      headings:{
+        web:"Web Sitesi Fiyat Paketleri",
+        mobile:"Mobil App Fiyat Paketleri"
+      },
+      webPackages:[
+        {tag:"Başlangıç",name:"Tanıtım Sitesi",price:"12.000",desc:"Bireysel marka, hizmet tanıtımı veya küçük işletmeler için sade, hızlı ve profesyonel web sitesi.",features:["Tek sayfa modern tasarım","Mobil uyumlu yapı","İletişim formu","Temel SEO düzeni","Hızlı teslim akışı"]},
+        {tag:"Kurumsal",name:"Kurumsal Web Sitesi",price:"24.500",desc:"Kurumsal firmalar, hizmet markaları ve güven veren dijital vitrin isteyen işletmeler için kapsamlı web sitesi.",features:["Çok bölümlü kurumsal tasarım","Hizmet sayfaları","Güçlü müşteri hitabı","SEO uyumlu içerik yapısı","Form ve panel bağlantısı"]},
+        {tag:"Çoklu İş Kolu",name:"Çoklu İş Kolu Sitesi",price:"38.000",desc:"Birden fazla hizmet, sektör veya iş kolunu tek çatı altında profesyonel biçimde sunmak isteyen yapılar için özel site.",features:["Çoklu hizmet kategorileri","Kurumsal sayfa düzeni","İş kolu bazlı içerik alanları","Genişletilebilir altyapı","Özel tasarım akışı"]}
+      ],
+      mobilePackages:[
+        {tag:"Mobil Başlangıç",name:"Mobil App Arayüz",price:"32.000",desc:"Mobil uygulama fikrinin profesyonel ekran tasarımları ve kullanıcı akışıyla hazırlanması.",features:["Ana ekran tasarımı","Profil ve detay ekranları","Modern kart yapısı","Mobil UI akışı","Yayın öncesi hazırlık"]},
+        {tag:"Mobil Pro",name:"Firebase Bağlantılı App",price:"58.000",desc:"Giriş, veri kayıt, panel bağlantısı ve canlı içerik yapısı olan mobil uygulama altyapısı.",features:["Google giriş altyapısı","Firestore veri sistemi","Profil ve liste yapıları","Bildirim uyumlu mimari","Test yayını hazırlığı"]},
+        {tag:"Özel App",name:"Kapsamlı Mobil Sistem",price:"95.000",desc:"Sosyal akış, ilan, mesajlaşma, panel ve özel modüller içeren kapsamlı mobil uygulama sistemi.",features:["Özel modül geliştirme","Mesajlaşma ve ilan yapısı","Admin panel bağlantısı","Yayın süreci desteği","Genişletilebilir sistem"]}
+      ],
+      nova:{
+        logo:"https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/logo.png?alt=media&token=9982f1d1-e6d7-40ec-8d63-27137937ee3e",
+        title:"NOVA Sosyal Otomotiv Platformu",
+        desc:"NOVA; araç tutkunları, servisler, çekiciler, ilan sahipleri ve otomotiv dünyasını tek uygulamada buluşturan sosyal mobil platformdur.",
+        playLogo:"https://img.freepik.com/premium-vektor/google-play-store-logosu_1273375-804.jpg",
+        appLogo:"https://www.apple.com/v/app-store/c/images/overview/icon_appstore__ev0z770zyxoy_large_2x.png",
+        playLink:"#",
+        appLink:"#"
+      },
+      seo:{
+        title:"Kaan Ayaz | Web Tasarım ve Yazılım Hizmetleri",
+        desc:"Kurumsal web sitesi, bireysel tanıtım sitesi, çoklu iş kolu web çözümleri ve mobil uygulama geliştirme hizmetleri.",
+        keywords:"web tasarım, kurumsal site, mobil uygulama, yazılım, Eskişehir web tasarım, Kaan Ayaz",
+        image:"https://firebasestorage.googleapis.com/v0/b/nova-b94ea.firebasestorage.app/o/posts%2FERpWTBp6HWa1mWoi35ZygJm3bDe2%2F7Nw8X3FVFB6Lts21XKHH%2F1780508852766_0.jpg?alt=media&token=c51dea6c-bbb2-4ae1-973f-68eb5b3afcc4",
+        footer:"© 2026 Kaan Ayaz Web & Mobil Developer. Tüm hakları saklıdır. | kaanayaz.com.tr"
+      },
+      updatedAt:null
+    };
+
+    let siteData = structuredClone(defaultSiteData);
+    let formsCache = [];
+
+    const loginPage = document.getElementById('loginPage');
+    const panel = document.getElementById('panel');
+    const loginError = document.getElementById('loginError');
+
+    document.getElementById('googleLoginBtn').addEventListener('click', async () => {
+      loginError.style.display = 'none';
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        await auth.signInWithPopup(provider);
+      } catch (err) {
+        loginError.textContent = 'Google girişi başarısız oldu. Tekrar deneyin.';
+        loginError.style.display = 'block';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await auth.signOut();
+    });
+
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        panel.classList.remove('active');
+        loginPage.classList.remove('hidden');
+        return;
+      }
+      if (!allowedAdminEmails.includes((user.email || '').toLowerCase())) {
+        await auth.signOut();
+        loginError.textContent = 'Bu Google hesabının panele erişim yetkisi yok.';
+        loginError.style.display = 'block';
+        return;
+      }
+      document.getElementById('adminName').textContent = user.displayName || 'Yönetici';
+      document.getElementById('adminEmail').textContent = user.email || '';
+      document.getElementById('adminPhoto').src = user.photoURL || 'https://ui-avatars.com/api/?name=Admin&background=080808&color=fff';
+      loginPage.classList.add('hidden');
+      panel.classList.add('active');
+      await loadAll();
+    });
+
+    document.querySelectorAll('.tabBtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tabContent').forEach(c => c.classList.add('hidden'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.remove('hidden');
+      });
+    });
+
+    function toast(msg){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2300);
+    }
+
+    function nowStamp(){ return firebase.firestore.FieldValue.serverTimestamp(); }
+    function safe(v){ return (v || '').toString(); }
+
+    async function loadAll(){
+      await loadSiteData();
+      await loadForms();
+      toast('Panel güncellendi');
+    }
+
+    async function loadSiteData(){
+      const ref = db.collection('site_admin').doc('homepage');
+      const snap = await ref.get();
+      if (!snap.exists) {
+        await ref.set({...defaultSiteData, updatedAt: nowStamp()}, {merge:true});
+        siteData = structuredClone(defaultSiteData);
+      } else {
+        siteData = mergeDeep(structuredClone(defaultSiteData), snap.data() || {});
+      }
+      fillInputs();
+      const updated = siteData.updatedAt && siteData.updatedAt.toDate ? siteData.updatedAt.toDate().toLocaleDateString('tr-TR') : '-';
+      document.getElementById('statUpdated').textContent = updated;
+    }
+
+    function mergeDeep(target, source){
+      for(const key in source){
+        if(source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) && !(source[key].toDate)){
+          target[key] = mergeDeep(target[key] || {}, source[key]);
+        } else {
+          target[key] = source[key];
+        }
+      }
+      return target;
+    }
+
+    function fillInputs(){
+      document.getElementById('heroTitle').value = siteData.hero.title || '';
+      document.getElementById('heroLead').value = siteData.hero.lead || '';
+      document.getElementById('heroSubtitle').value = siteData.hero.subtitle || '';
+      renderToolsInputs(siteData.hero.tools || []);
+      document.getElementById('webHeading').value = siteData.headings.web || '';
+      document.getElementById('mobileHeading').value = siteData.headings.mobile || '';
+      renderPackageInputs('web', siteData.webPackages || []);
+      renderPackageInputs('mobile', siteData.mobilePackages || []);
+      document.getElementById('novaLogo').value = siteData.nova.logo || '';
+      document.getElementById('novaTitle').value = siteData.nova.title || '';
+      document.getElementById('novaDesc').value = siteData.nova.desc || '';
+      document.getElementById('playLogo').value = siteData.nova.playLogo || '';
+      document.getElementById('playLink').value = siteData.nova.playLink || '';
+      document.getElementById('appLogo').value = siteData.nova.appLogo || '';
+      document.getElementById('appLink').value = siteData.nova.appLink || '';
+      document.getElementById('seoTitle').value = siteData.seo.title || '';
+      document.getElementById('seoDesc').value = siteData.seo.desc || '';
+      document.getElementById('seoKeywords').value = siteData.seo.keywords || '';
+      document.getElementById('seoImage').value = siteData.seo.image || '';
+      document.getElementById('footerText').value = siteData.seo.footer || '';
+    }
+
+    function renderToolsInputs(tools){
+      const box = document.getElementById('toolsInputs');
+      box.innerHTML = '';
+      for(let i=0;i<5;i++){
+        const div = document.createElement('div');
+        div.className = 'field';
+        div.innerHTML = `<label>Program ${i+1}</label><input class="toolInput" value="${escapeAttr(tools[i] || '')}" placeholder="Örn: Android Studio">`;
+        box.appendChild(div);
+      }
+    }
+
+    function renderPackageInputs(type, packages){
+      const box = document.getElementById(type === 'web' ? 'webPackageInputs' : 'mobilePackageInputs');
+      box.innerHTML = '';
+      for(let i=0;i<3;i++){
+        const p = packages[i] || {tag:'',name:'',price:'',desc:'',features:['','','','','']};
+        const div = document.createElement('div');
+        div.className = 'packageBox';
+        div.innerHTML = `
+          <div class="packageTitle"><h3>Paket ${i+1}</h3><span class="badge">${type === 'web' ? 'Web' : 'Mobil'}</span></div>
+          <div class="field"><label>Etiket</label><input data-field="tag" value="${escapeAttr(p.tag)}"></div>
+          <div class="field"><label>Paket Adı</label><input data-field="name" value="${escapeAttr(p.name)}"></div>
+          <div class="field"><label>Fiyat</label><input data-field="price" value="${escapeAttr(p.price)}"></div>
+          <div class="field"><label>Açıklama</label><textarea data-field="desc">${escapeHtml(p.desc)}</textarea></div>
+          <label>Özellikler</label>
+          <div class="features">
+            ${(p.features || ['', '', '', '', '']).slice(0,5).map(f=>`<input data-field="feature" value="${escapeAttr(f)}">`).join('')}
+          </div>`;
+        box.appendChild(div);
+      }
+    }
+
+    function collectPackages(type){
+      const box = document.getElementById(type === 'web' ? 'webPackageInputs' : 'mobilePackageInputs');
+      return [...box.querySelectorAll('.packageBox')].map(item => ({
+        tag: item.querySelector('[data-field="tag"]').value.trim(),
+        name: item.querySelector('[data-field="name"]').value.trim(),
+        price: item.querySelector('[data-field="price"]').value.trim(),
+        desc: item.querySelector('[data-field="desc"]').value.trim(),
+        features: [...item.querySelectorAll('[data-field="feature"]')].map(x=>x.value.trim()).filter(Boolean)
+      }));
+    }
+
+    async function saveHero(){
+      const tools = [...document.querySelectorAll('.toolInput')].map(x=>x.value.trim()).filter(Boolean).slice(0,5);
+      await db.collection('site_admin').doc('homepage').set({
+        hero:{title:heroTitle.value.trim(),lead:heroLead.value.trim(),subtitle:heroSubtitle.value.trim(),tools},
+        updatedAt: nowStamp()
+      }, {merge:true});
+      toast('Ana sayfa kaydedildi');
+      await loadSiteData();
+    }
+
+    async function savePackages(type){
+      const update = { updatedAt: nowStamp() };
+      if(type === 'web'){
+        update.headings = { ...(siteData.headings || {}), web: webHeading.value.trim() };
+        update.webPackages = collectPackages('web');
+      } else {
+        update.headings = { ...(siteData.headings || {}), mobile: mobileHeading.value.trim() };
+        update.mobilePackages = collectPackages('mobile');
+      }
+      await db.collection('site_admin').doc('homepage').set(update, {merge:true});
+      toast(type === 'web' ? 'Web paketleri kaydedildi' : 'Mobil paketleri kaydedildi');
+      await loadSiteData();
+    }
+
+    async function saveNova(){
+      await db.collection('site_admin').doc('homepage').set({
+        nova:{logo:novaLogo.value.trim(),title:novaTitle.value.trim(),desc:novaDesc.value.trim(),playLogo:playLogo.value.trim(),playLink:playLink.value.trim(),appLogo:appLogo.value.trim(),appLink:appLink.value.trim()},
+        updatedAt: nowStamp()
+      }, {merge:true});
+      toast('NOVA alanı kaydedildi');
+      await loadSiteData();
+    }
+
+    async function saveSeo(){
+      await db.collection('site_admin').doc('homepage').set({
+        seo:{title:seoTitle.value.trim(),desc:seoDesc.value.trim(),keywords:seoKeywords.value.trim(),image:seoImage.value.trim(),footer:footerText.value.trim()},
+        updatedAt: nowStamp()
+      }, {merge:true});
+      toast('SEO ayarları kaydedildi');
+      await loadSiteData();
+    }
+
+    async function loadForms(){
+      const snap = await db.collection('website_contact_forms').orderBy('createdAt','desc').limit(100).get().catch(async () => {
+        return await db.collection('website_contact_forms').limit(100).get();
+      });
+      formsCache = snap.docs.map(doc => ({id:doc.id, ...doc.data()}));
+      document.getElementById('statForms').textContent = formsCache.length;
+      document.getElementById('statUnread').textContent = formsCache.filter(f => !f.read).length;
+      renderForms('formsList', formsCache);
+      renderForms('recentForms', formsCache.slice(0,5), true);
+    }
+
+    function renderForms(targetId, forms, compact=false){
+      const box = document.getElementById(targetId);
+      if(!forms.length){ box.innerHTML = '<div class="empty">Henüz form talebi yok.</div>'; return; }
+      box.innerHTML = forms.map(f => {
+        const date = f.createdAt && f.createdAt.toDate ? f.createdAt.toDate().toLocaleString('tr-TR') : '-';
+        return `<div class="row">
+          <div class="rowTop">
+            <div><h3>${escapeHtml(f.name || f.fullName || 'İsimsiz Talep')}</h3><div class="muted">${escapeHtml(f.email || '-')} ${f.phone ? ' • '+escapeHtml(f.phone) : ''}</div></div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end"><span class="badge ${f.read ? 'black' : 'yellow'}">${f.read ? 'Okundu' : 'Yeni'}</span><span class="badge">${escapeHtml(f.service || 'Form')}</span></div>
+          </div>
+          ${compact ? '' : `<div class="messageText">${escapeHtml(f.message || '-')}</div>`}
+          <div class="rowTop"><span class="muted">${date}</span>${compact ? '' : `<div style="display:flex;gap:8px"><button class="btn small ghost" onclick="markRead('${f.id}')">Okundu</button><button class="btn small danger" onclick="deleteForm('${f.id}')">Sil</button></div>`}</div>
+        </div>`;
+      }).join('');
+    }
+
+    async function markRead(id){
+      await db.collection('website_contact_forms').doc(id).set({read:true, readAt:nowStamp()}, {merge:true});
+      toast('Form okundu olarak işaretlendi');
+      await loadForms();
+    }
+
+    async function deleteForm(id){
+      if(!confirm('Bu form kaydı silinsin mi?')) return;
+      await db.collection('website_contact_forms').doc(id).delete();
+      toast('Form silindi');
+      await loadForms();
+    }
+
+    function escapeHtml(str){ return safe(str).replace(/[&<>'"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m])); }
+    function escapeAttr(str){ return escapeHtml(str); }
+  </script>
+</body>
+</html>
